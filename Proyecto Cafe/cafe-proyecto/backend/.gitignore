@@ -1,0 +1,5 @@
+# Ocultar el archivo de credenciales de la base de datos
+.env
+
+# Ocultar la carpeta pesada de dependencias
+node_modules/
