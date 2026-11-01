@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{% if recipe %}{% if LANGUAGE_CODE == "en" %}Edit recipe{% else %}Editar receta{% endif %}{% else %}{% if LANGUAGE_CODE == "en" %}Share a recipe{% else %}Compartir receta{% endif %}{% endif %}{% endblock %}
+{% block content %}
+<div class="form-page">
+  <a class="back-link" href="{% if recipe %}{% url 'recipe_detail' recipe.slug %}{% else %}{% url 'recipe_list' %}{% endif %}">← {% if LANGUAGE_CODE == "en" %}Back{% else %}Volver{% endif %}</a>
+  <div class="form-heading"><span class="eyebrow eyebrow-dark">{% if LANGUAGE_CODE == "en" %}Your kitchen, your story{% else %}Tu cocina, tu historia{% endif %}</span><h1>{% if recipe %}{% if LANGUAGE_CODE == "en" %}A little update{% else %}Un pequeño cambio{% endif %}{% else %}{% if LANGUAGE_CODE == "en" %}Pass the good food on{% else %}Comparte algo rico{% endif %}{% endif %}</h1><p>{% if LANGUAGE_CODE == "en" %}Add the details and ingredients. You can translate the recipe after saving it.{% else %}Completa los detalles y los ingredientes. Podrás traducir la receta después de guardarla.{% endif %}</p></div>
+  <form class="recipe-form form-card" method="post" enctype="multipart/form-data" novalidate>{% csrf_token %}
+    {% if form.non_field_errors %}<div class="form-errors">{{ form.non_field_errors }}</div>{% endif %}
+    <section class="form-section"><h2>📝 {% if LANGUAGE_CODE == "en" %}The recipe{% else %}La receta{% endif %}</h2>
+      <div class="field full-field"><label for="{{ form.title.id_for_label }}">{{ form.title.label }} <span>*</span></label>{{ form.title }}{{ form.title.errors }}</div>
+      <div class="field full-field"><label for="{{ form.summary.id_for_label }}">{{ form.summary.label }} <span>*</span></label>{{ form.summary }}{{ form.summary.errors }}</div>
+      <div class="field full-field"><label for="{{ form.instructions.id_for_label }}">{{ form.instructions.label }} <span>*</span></label>{{ form.instructions }}{{ form.instructions.errors }}<small>{% if LANGUAGE_CODE == "en" %}Put each step on a new line.{% else %}Escribe cada paso en una línea nueva.{% endif %}</small></div>
+    </section>
+    <section class="form-section"><h2>⏲ {% if LANGUAGE_CODE == "en" %}At a glance{% else %}Datos rápidos{% endif %}</h2><div class="form-grid">
+      {% for field in form %}{% if field.name != "title" and field.name != "summary" and field.name != "instructions" %}<div class="field"><label for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %} <span>*</span>{% endif %}</label>{{ field }}{{ field.errors }}</div>{% endif %}{% endfor %}
+    </div></section>
+    <section class="form-section ingredients-editor"><div class="form-section-title"><div><h2>🥕 {% if LANGUAGE_CODE == "en" %}Ingredients{% else %}Ingredientes{% endif %}</h2><p class="muted">{% if LANGUAGE_CODE == "en" %}Add as many ingredient rows as you need.{% else %}Añade tantas filas de ingredientes como necesites.{% endif %}</p></div></div>
+      {{ ingredient_formset.management_form }}
+      {% if ingredient_formset.non_form_errors %}<div class="form-errors">{{ ingredient_formset.non_form_errors }}</div>{% endif %}
+      <div id="ingredient-rows">
+        {% for ingredient_form in ingredient_formset %}
+          <div class="ingredient-row" data-ingredient-row>
+            {{ ingredient_form.id }}{{ ingredient_form.position }}{{ ingredient_form.DELETE }}
+            <div class="field ingredient-name">{{ ingredient_form.name.label_tag }}{{ ingredient_form.name }}{{ ingredient_form.name.errors }}</div>
+            <div class="field ingredient-amount">{{ ingredient_form.amount.label_tag }}{{ ingredient_form.amount }}{{ ingredient_form.amount.errors }}</div>
+            <div class="field ingredient-unit">{{ ingredient_form.unit.label_tag }}{{ ingredient_form.unit }}{{ ingredient_form.unit.errors }}</div>
+            <button class="remove-ingredient" type="button" aria-label="{% if LANGUAGE_CODE == 'en' %}Remove ingredient{% else %}Quitar ingrediente{% endif %}">×</button>
+            {% if ingredient_form.DELETE.errors %}{{ ingredient_form.DELETE.errors }}{% endif %}
+          </div>
+        {% endfor %}
+      </div>
+      <button class="button button-outline add-ingredient" type="button" id="add-ingredient">＋ {% if LANGUAGE_CODE == "en" %}Add ingredient{% else %}Añadir ingrediente{% endif %}</button>
+      <template id="empty-ingredient-row"><div class="ingredient-row" data-ingredient-row>
+        {{ ingredient_formset.empty_form.id }}{{ ingredient_formset.empty_form.position }}{{ ingredient_formset.empty_form.DELETE }}
+        <div class="field ingredient-name"><label for="{{ ingredient_formset.empty_form.name.id_for_label }}">{{ ingredient_formset.empty_form.name.label }}</label>{{ ingredient_formset.empty_form.name }}</div>
+        <div class="field ingredient-amount"><label for="{{ ingredient_formset.empty_form.amount.id_for_label }}">{{ ingredient_formset.empty_form.amount.label }}</label>{{ ingredient_formset.empty_form.amount }}</div>
+        <div class="field ingredient-unit"><label for="{{ ingredient_formset.empty_form.unit.id_for_label }}">{{ ingredient_formset.empty_form.unit.label }}</label>{{ ingredient_formset.empty_form.unit }}</div>
+        <button class="remove-ingredient" type="button" aria-label="{% if LANGUAGE_CODE == 'en' %}Remove ingredient{% else %}Quitar ingrediente{% endif %}">×</button>
+      </div></template>
+    </section>
+    <div class="form-actions"><a class="button button-outline" href="{% if recipe %}{% url 'recipe_detail' recipe.slug %}{% else %}{% url 'recipe_list' %}{% endif %}">{% if LANGUAGE_CODE == "en" %}Cancel{% else %}Cancelar{% endif %}</a><button class="button button-primary" type="submit">{% if recipe %}{% if LANGUAGE_CODE == "en" %}Save changes{% else %}Guardar cambios{% endif %}{% else %}{% if LANGUAGE_CODE == "en" %}Publish recipe{% else %}Publicar receta{% endif %}{% endif %} <span aria-hidden="true">→</span></button></div>
+  </form>
+</div>
+{% endblock %}
+{% block extra_scripts %}<script src="{% static 'js/ingredients.js' %}" defer></script>{% endblock %}

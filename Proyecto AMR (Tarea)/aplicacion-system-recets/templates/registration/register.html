@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}{% if LANGUAGE_CODE == "en" %}Join the community{% else %}Únete a la comunidad{% endif %}{% endblock %}
+{% block content %}
+<div class="auth-page"><div class="auth-card"><span class="auth-emoji">🥑</span><span class="eyebrow eyebrow-dark">{% if LANGUAGE_CODE == "en" %}Pull up a chair{% else %}Hay lugar para ti{% endif %}</span><h1>{% if LANGUAGE_CODE == "en" %}Join the table.{% else %}Siéntate a la mesa.{% endif %}</h1>
+  <form method="post" class="auth-form">{% csrf_token %}{% for field in form %}<div class="field"><label for="{{ field.id_for_label }}">{% if LANGUAGE_CODE == "en" %}{{ field.label }}{% else %}{% if field.name == "username" %}Usuario{% elif field.name == "password1" %}Contraseña{% else %}Confirma tu contraseña{% endif %}{% endif %}</label>{{ field }}{{ field.errors }}{% if field.help_text %}<small>{{ field.help_text|safe }}</small>{% endif %}</div>{% endfor %}<button class="button button-primary button-wide" type="submit">{% if LANGUAGE_CODE == "en" %}Create account{% else %}Crear cuenta{% endif %} →</button></form>
+  <p class="auth-switch">{% if LANGUAGE_CODE == "en" %}Already have an account?{% else %}¿Ya tienes una cuenta?{% endif %} <a href="{% url 'login' %}">{% if LANGUAGE_CODE == "en" %}Sign in{% else %}Inicia sesión{% endif %}</a></p>
+</div></div>
+{% endblock %}
