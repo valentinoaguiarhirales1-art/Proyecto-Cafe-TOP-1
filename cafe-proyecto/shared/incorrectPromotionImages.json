@@ -1,0 +1,14 @@
+{
+  "Chilaquiles y Naranja": {
+    "https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?auto=format&fit=crop&w=800&q=85": "/images/producto-sin-foto.svg"
+  },
+  "Chai con Rol de Canela": {
+    "https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=800&q=85": "/images/producto-sin-foto.svg"
+  },
+  "Merienda de Café": {
+    "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=85": "/images/producto-sin-foto.svg"
+  },
+  "Desayuno Ejecutivo Gourmet": {
+    "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=85": "/images/producto-sin-foto.svg"
+  }
+}

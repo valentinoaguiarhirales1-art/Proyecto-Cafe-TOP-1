@@ -1,0 +1,38 @@
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    path("django-api/products", views.products_api, name="products-api"),
+    path("django-api/promotions", views.promotions_api, name="promotions-api"),
+    path("django-api/site-settings", views.site_settings_api, name="site-settings-api"),
+    path("django-api/team", views.team_api, name="team-api"),
+    path("django-api/staff-applications", views.staff_application_api, name="staff-application-api"),
+    path("django-api/accept-staff-invitation", views.accept_staff_invitation_api, name="accept-staff-invitation-api"),
+    path("django-api/events", views.events_api, name="events-api"),
+    path("django-api/events/<int:pk>/book", views.book_event_api, name="book-event-api"),
+    path("django-api/my-event-bookings", views.my_event_bookings_api, name="my-event-bookings-api"),
+    path("django-api/session", views.session_api, name="session-api"),
+    path("django-api/login", views.login_api, name="login-api"),
+    path("django-api/register", views.register_api, name="register-api"),
+    path("django-api/logout", views.logout_api, name="logout-api"),
+    path("django-api/profile", views.profile_api, name="profile-api"),
+    path("django-api/orders", views.create_order_api, name="create-order-api"),
+    path("django-api/my-orders", views.my_orders_api, name="my-orders-api"),
+    path("django-api/reservations", views.create_reservation_api, name="create-reservation-api"),
+    path("django-api/guest-reservations", views.create_guest_reservation_api, name="guest-reservation-api"),
+    path("django-api/my-reservations", views.my_reservations_api, name="my-reservations-api"),
+    path("catalogo/", views.product_list, name="product-list"),
+    path("catalogo/<int:pk>/editar/", views.product_edit, name="product-edit"),
+    path("personal/", views.staff_dashboard, name="staff-dashboard"),
+    path("personal/solicitudes/<int:pk>/invitacion/", views.issue_staff_invitation, name="issue-staff-invitation"),
+    path("personal/solicitudes/<int:pk>/rechazar/", views.reject_staff_application, name="reject-staff-application"),
+    path("personal/pedidos/<int:pk>/estado/", views.staff_order_status, name="staff-order-status"),
+    path("personal/reservas/<int:pk>/estado/", views.staff_guest_reservation_status, name="staff-guest-reservation-status"),
+    path("personal/reservas-de-clientes/<int:pk>/estado/", views.staff_reservation_status, name="staff-reservation-status"),
+    path("cuenta/registro/", views.register, name="register"),
+    path("pedidos/nuevo/", views.create_order, name="create-order"),
+    path("pedidos/", views.my_orders, name="my-orders"),
+    path("reservas/nueva/", views.create_reservation, name="create-reservation"),
+    path("reservas/", views.my_reservations, name="my-reservations"),
+]

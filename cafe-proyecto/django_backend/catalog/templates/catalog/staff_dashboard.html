@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Panel del personal | Café Exquisito</title></head>
+<body>
+  <h1>Panel del personal de Django</h1>
+  <p>Los datos de este panel son independientes de Express y MongoDB.</p>
+  <nav><a href="{% url 'product-list' %}">Catálogo</a> · <a href="/admin/">Administración Django</a></nav>
+  {% if applications is not None %}
+    <h2>Solicitudes de empleo Django</h2>
+    <ul>{% for application in applications %}
+      <li>{{ application.name }} — {{ application.email }} — {{ application.get_requested_position_display }} — {{ application.get_status_display }}
+        {% if perms.catalog.change_staffapplication %}
+          {% if application.status == "pending" or application.status == "reviewed" or application.status == "approved" %}
+            <form method="post" action="{% url 'issue-staff-invitation' application.pk %}">
+              {% csrf_token %}<button type="submit">Emitir o renovar invitación</button>
+            </form>
+            <form method="post" action="{% url 'reject-staff-application' application.pk %}">
+              {% csrf_token %}<button type="submit">Rechazar solicitud</button>
+            </form>
+          {% endif %}
+        {% endif %}
+      </li>
+    {% empty %}<li>No hay solicitudes.</li>{% endfor %}</ul>
+  {% endif %}
+  {% if products is not None %}
+    <h2>Productos</h2>
+    <ul>{% for product in products %}
+      <li>{{ product.name }} — {{ product.category.name }} — ${{ product.price }}
+        {% if product.available %}(disponible){% else %}(no disponible){% endif %}
+        {% if perms.catalog.change_product %}<a href="{% url 'product-edit' product.pk %}">Editar</a>{% endif %}
+      </li>
+    {% empty %}<li>No hay productos.</li>{% endfor %}</ul>
+  {% endif %}
+  {% if orders is not None %}
+    <h2>Pedidos Django</h2>
+    <ul>{% for order in orders %}
+      <li>
+        Pedido {{ order.pk }} — {{ order.customer.username }} — {{ order.order_type }} — ${{ order.total }} — {{ order.status }}
+        {% if order.mongo_id %}<p>Pedido importado de Express — {% if order.legacy_data.isPaid %}pago registrado{% else %}pago no registrado{% endif %} — {{ order.legacy_data.branch }}</p>{% endif %}
+        <ul>{% for item in order.items.all %}<li>{{ item.quantity }} × {{ item.product_name }}{% if item.selected_size %} — {{ item.selected_size }}{% endif %}{% if item.selected_milk %} — {{ item.selected_milk }}{% endif %}{% if item.selected_extras %} — {{ item.selected_extras|join:", " }}{% endif %}{% if item.notes %} — {{ item.notes }}{% endif %}</li>{% endfor %}</ul>
+        {% if perms.catalog.change_order %}
+          <form method="post" action="{% url 'staff-order-status' order.pk %}">
+            {% csrf_token %}<label>Estado <select name="status">{% for value, label in order_statuses %}<option value="{{ value }}" {% if value == order.status %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></label>
+            <button type="submit">Guardar estado</button>
+          </form>
+        {% endif %}
+      </li>
+    {% empty %}<li>No hay pedidos.</li>{% endfor %}</ul>
+  {% endif %}
+  {% if reservations is not None %}
+    <h2>Solicitudes de reserva de invitados</h2>
+    <ul>{% for reservation in reservations %}
+      <li>
+        {{ reservation.name }} — {{ reservation.email }} — {{ reservation.phone }} — {{ reservation.date }} {{ reservation.time }} — {{ reservation.party_size }} personas — {{ reservation.status }}
+        {% if reservation.notes %}<p>{{ reservation.notes }}</p>{% endif %}
+        {% if perms.catalog.change_guestreservation %}
+          <form method="post" action="{% url 'staff-guest-reservation-status' reservation.pk %}">
+            {% csrf_token %}<label>Estado <select name="status">{% for value, label in reservation_statuses %}<option value="{{ value }}" {% if value == reservation.status %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></label>
+            <button type="submit">Guardar estado</button>
+          </form>
+        {% endif %}
+      </li>
+    {% empty %}<li>No hay solicitudes.</li>{% endfor %}</ul>
+  {% endif %}
+  {% if account_reservations is not None %}
+    <h2>Reservas de clientes Django</h2>
+    <ul>{% for reservation in account_reservations %}
+      <li>
+        {{ reservation.customer.username }} — {{ reservation.date }} {{ reservation.time }} — {{ reservation.party_size }} personas — {{ reservation.status }}
+        {% if reservation.notes %}<p>{{ reservation.notes }}</p>{% endif %}
+        {% if perms.catalog.change_reservation %}
+          <form method="post" action="{% url 'staff-reservation-status' reservation.pk %}">
+            {% csrf_token %}<label>Estado <select name="status">{% for value, label in account_reservation_statuses %}<option value="{{ value }}" {% if value == reservation.status %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></label>
+            <button type="submit">Guardar estado</button>
+          </form>
+        {% endif %}
+      </li>
+    {% empty %}<li>No hay reservas.</li>{% endfor %}</ul>
+  {% endif %}
+</body>
+</html>

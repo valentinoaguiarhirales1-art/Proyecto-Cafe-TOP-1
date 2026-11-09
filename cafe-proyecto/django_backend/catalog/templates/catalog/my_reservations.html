@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Mis reservas</title></head>
+<body>
+  <h1>Mis reservas</h1>
+  <ul>
+    {% for reservation in reservations %}
+      <li>{{ reservation.date }} {{ reservation.time }} — {{ reservation.party_size }} personas — {{ reservation.status }}</li>
+    {% empty %}<li>Todavía no tienes reservas.</li>{% endfor %}
+  </ul>
+  <a href="{% url 'product-list' %}">Volver al catálogo</a>
+</body>
+</html>

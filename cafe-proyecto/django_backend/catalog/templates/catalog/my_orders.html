@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Mis pedidos</title></head>
+<body>
+  <h1>Mis pedidos</h1>
+  <ul>
+    {% for order in orders %}
+      <li>Pedido {{ order.pk }} — {{ order.order_type }} — {{ order.status }} — ${{ order.total }}
+        <ul>{% for item in order.items.all %}
+          <li>{{ item.quantity }} × {{ item.product_name }} — ${{ item.unit_price }}
+            {% if item.selected_size %} — {{ item.selected_size }}{% endif %}
+            {% if item.selected_milk %} — {{ item.selected_milk }}{% endif %}
+            {% if item.selected_extras %} — {{ item.selected_extras|join:", " }}{% endif %}
+            {% if item.notes %} — {{ item.notes }}{% endif %}
+          </li>
+        {% endfor %}</ul>
+      </li>
+    {% empty %}<li>Todavía no tienes pedidos.</li>{% endfor %}
+  </ul>
+  <a href="{% url 'product-list' %}">Volver al catálogo</a>
+</body>
+</html>

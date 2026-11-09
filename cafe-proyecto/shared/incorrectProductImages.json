@@ -1,0 +1,154 @@
+{
+  "Tisana": {
+    "/images/menu/tisana.jpg": "/images/menu/foto-verificada-tisana.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/foto-verificada-tisana.jpg"
+  },
+  "Espresso Sencillo": {
+    "/images/menu/espresso-sencillo.jpg": "/images/menu/foto-verificada-espresso.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/foto-verificada-espresso.jpg"
+  },
+  "Frappe Mocha Mint": {
+    "/images/menu/frappe-mocha-mint.jpg": "/images/producto-sin-foto.svg"
+  },
+  "Frappe Chocolate Blanco": {
+    "/images/menu/frappe-chocolate-blanco.jpg": "/images/producto-sin-foto.svg"
+  },
+  "Frappe Coco": {
+    "/images/menu/frappe-coco.jpg": "/images/menu/foto-revisada-2.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/foto-revisada-2.jpg"
+  },
+  "Frappe Light Taro": {
+    "/images/menu/frappe-light-taro.jpg": "/images/menu/frappe-taro.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/frappe-taro.jpg"
+  },
+  "Frappe Light Vainilla": {
+    "/images/menu/frappe-light-vainilla.jpg": "/images/menu/foto-revisada-3.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/foto-revisada-3.jpg"
+  },
+  "Frappe Light Chai de Vainilla": {
+    "/images/menu/frappe-light-chai-de-vainilla.jpg": "/images/producto-sin-foto.svg"
+  },
+  "Chilaquiles Rojos": {
+    "/images/menu/alimento-chilaquiles-rojos.jpg": "/images/menu/verificada-chilaquiles-rojos.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/verificada-chilaquiles-rojos.jpg"
+  },
+  "Chilaquiles Verdes": {
+    "/images/menu/alimento-chilaquiles-verdes.jpg": "/images/menu/foto-verificada-0.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/foto-verificada-0.jpg"
+  },
+  "Desayuno Americano": {
+    "/images/menu/alimento-desayuno-americano.jpg": "/images/menu/desayuno-americano.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/desayuno-americano.jpg"
+  },
+  "Omelette con Queso": {
+    "/images/menu/alimento-omelette-con-queso.jpg": "/images/menu/foto-verificada-2.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/foto-verificada-2.jpg"
+  },
+  "Hotcakes (3 piezas)": {
+    "/images/menu/alimento-hotcakes-3-piezas.jpg": "/images/menu/foto-verificada-3.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/foto-verificada-3.jpg"
+  },
+  "Sándwich Mañanero": {
+    "/images/menu/sandwich-mananero.jpg": "/images/menu/sndwich-maanero.jpg",
+    "/images/menu/alimento-sandwich-maanero.jpg": "/images/menu/sndwich-maanero.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/sndwich-maanero.jpg"
+  },
+  "Club Sandwich": {
+    "/images/menu/alimento-club-sandwich.jpg": "/images/menu/foto-verificada-5.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/foto-verificada-5.jpg"
+  },
+  "Chicken Chipotle": {
+    "/images/menu/alimento-chicken-chipotle.jpg": "/images/menu/chicken-chipotle.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/chicken-chipotle.jpg"
+  },
+  "Sándwich": {
+    "/images/menu/alimento-sandwich.jpg": "/images/menu/foto-verificada-7.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/foto-verificada-7.jpg"
+  },
+  "Croissant": {
+    "/images/menu/alimento-croissant.jpg": "/images/menu/foto-verificada-8.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/foto-verificada-8.jpg"
+  },
+  "Calzone": {
+    "/images/menu/alimento-calzone.jpg": "/images/menu/foto-verificada-9.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/foto-verificada-9.jpg"
+  },
+  "Ensalada de Pollo": {
+    "/images/menu/alimento-ensalada-de-pollo.jpg": "/images/menu/foto-ensalada-pollo.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/foto-ensalada-pollo.jpg"
+  },
+  "Enchiladas de Pollo": {
+    "/images/menu/alimento-enchiladas-de-pollo.jpg": "/images/menu/foto-verificada-10.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/foto-verificada-10.jpg"
+  },
+  "Papas Fritas": {
+    "/images/menu/alimento-papas-fritas.jpg": "/images/menu/foto-papas-fritas.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/foto-papas-fritas.jpg"
+  },
+  "Baguette": {
+    "/images/menu/alimento-baguette.jpg": "/images/menu/foto-verificada-12.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/foto-verificada-12.jpg"
+  },
+  "Sopa de Lentejas": {
+    "/images/menu/alimento-sopa-de-lentejas.jpg": "/images/menu/sopa-de-lentejas.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/sopa-de-lentejas.jpg"
+  },
+  "Sopa de Brócoli": {
+    "/images/menu/alimento-sopa-de-brocoli.jpg": "/images/menu/sopa-de-brcoli.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/sopa-de-brcoli.jpg"
+  },
+  "Brownie": {
+    "/images/menu/alimento-brownie.jpg": "/images/menu/foto-verificada-15.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/foto-verificada-15.jpg"
+  },
+  "Rol de Canela": {
+    "/images/menu/alimento-rol-de-canela.jpg": "/images/menu/foto-verificada-16.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/foto-verificada-16.jpg"
+  },
+  "Muffin": {
+    "/images/menu/alimento-muffin.jpg": "/images/menu/muffin.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/muffin.jpg"
+  },
+  "Scone": {
+    "/images/menu/alimento-scone.jpg": "/images/menu/foto-revisada-7.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/foto-revisada-7.jpg"
+  },
+  "Cupcake": {
+    "/images/menu/alimento-cupcake.jpg": "/images/menu/foto-revisada-8.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/foto-revisada-8.jpg"
+  },
+  "Éclair": {
+    "/images/menu/alimento-eclair.jpg": "/images/menu/foto-revisada-9.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/foto-revisada-9.jpg"
+  },
+  "Panes": {
+    "/images/menu/alimento-panes.jpg": "/images/menu/foto-revisada-10.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/foto-revisada-10.jpg"
+  },
+  "Pan Stevia": {
+    "/images/menu/alimento-pan-stevia.jpg": "/images/producto-sin-foto.svg"
+  },
+  "Pastel Cheesecake": {
+    "/images/menu/alimento-pastel-cheesecake.jpg": "/images/menu/verificada-cheesecake.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/verificada-cheesecake.jpg"
+  },
+  "Pay de Queso y Cereza": {
+    "/images/menu/alimento-pay-de-queso-y-cereza.jpg": "/images/menu/foto-revisada-11.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/foto-revisada-11.jpg"
+  },
+  "Pay de Guayaba": {
+    "/images/menu/alimento-pay-de-guayaba.jpg": "/images/producto-sin-foto.svg"
+  },
+  "Pay de Manzana": {
+    "/images/menu/alimento-pay-de-manzana.jpg": "/images/menu/verificada-pay-manzana.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/verificada-pay-manzana.jpg"
+  },
+  "Euro Soda": {
+    "https://images.unsplash.com/photo-1570197788417-0e82375c9371?auto=format&fit=crop&w=800&q=85": "/images/menu/soda-italiana.jpg",
+    "/images/menu/euro-soda.jpg": "/images/menu/soda-italiana.jpg",
+    "/images/producto-sin-foto.svg": "/images/menu/soda-italiana.jpg"
+  },
+  "Cappuccino Cajeta": {
+    "https://images.unsplash.com/photo-1509785307050-d4066910ec1e?auto=format&fit=crop&w=800&q=85": "/images/menu/cappuccino-cajeta.jpg"
+  }
+}

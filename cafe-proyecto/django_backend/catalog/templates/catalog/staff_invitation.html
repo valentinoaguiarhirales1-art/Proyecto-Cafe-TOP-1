@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Invitación | Café Exquisito</title></head>
+<body>
+  <h1>Invitación para {{ application.name }}</h1>
+  <p>Entrega este código en privado a la persona solicitante. Solo se muestra ahora y vence el {{ application.invitation_expires_at }}.</p>
+  <p><code>{{ code }}</code></p>
+  <p>La persona debe iniciar sesión con {{ application.email }} para aceptar la invitación. La aceptación no concede permisos de administración ni publica el perfil.</p>
+  <a href="{% url 'staff-dashboard' %}">Volver al panel</a>
+</body>
+</html>

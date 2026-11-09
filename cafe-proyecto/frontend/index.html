@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#2c1a0e" />
+    <meta name="description" content="Café Exquisito: café, bebidas, postres y algo para compartir." />
+    <meta name="author" content="Valentino" />
+
+    <!-- PWA Manifest & Icons -->
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+    <title>Café Exquisito — Especialidad & Experiencias</title>
+  </head>
+  <body>
+    <div id="root">
+      <main id="startup-message" style="box-sizing:border-box;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem;background:#1a0f00;color:#f5e6c8;font:16px/1.6 Arial,sans-serif" role="status">
+        <section style="max-width:38rem;padding:2rem;background:#2c1a0e;border:1px solid #c67c3f;border-radius:1rem">
+          <h1>Cargando Café Exquisito…</h1>
+          <p>Estamos preparando la página. Si tarda demasiado, revisa tu conexión y vuelve a intentarlo.</p>
+          <button onclick="location.reload()" style="padding:.75rem 1rem;border:0;border-radius:999px;background:#c67c3f;color:#1a0f00;font-weight:700;cursor:pointer">Recargar página</button>
+        </section>
+      </main>
+    </div>
+    <script>
+      window.setTimeout(function () {
+        var message = document.getElementById('startup-message');
+        if (!message) return;
+        message.setAttribute('role', 'alert');
+        message.querySelector('h1').textContent = 'No se pudo abrir Café Exquisito';
+        message.querySelector('p').textContent = 'Revisa tu conexión y vuelve a intentarlo. Si usas la app instalada, ciérrala y vuelve a abrirla. Si estás usando una dirección local, comprueba que el servidor esté encendido.';
+      }, 15000);
+    </script>
+    <script type="module">
+      (async () => {
+        const localDevelopment = import.meta.env.DEV
+          && ['localhost', '127.0.0.1'].includes(window.location.hostname);
+        let reloadAfterCleanup = false;
+
+        if (localDevelopment && 'serviceWorker' in navigator) {
+          try {
+            const registrations = await navigator.serviceWorker.getRegistrations();
+            const appRegistrations = registrations.filter((registration) =>
+              [registration.active, registration.waiting, registration.installing]
+                .some((worker) => {
+                  if (!worker) return false;
+                  const script = new URL(worker.scriptURL);
+                  return script.origin === window.location.origin
+                    && ['/sw.js', '/service-worker.js'].includes(script.pathname);
+                })
+            );
+            const wasControlledByApp = appRegistrations.some((registration) =>
+              [registration.active, registration.waiting, registration.installing]
+                .some((worker) => worker?.scriptURL === navigator.serviceWorker.controller?.scriptURL)
+            );
+
+            const unregistered = await Promise.all(
+              appRegistrations.map((registration) => registration.unregister())
+            );
+            reloadAfterCleanup = wasControlledByApp && unregistered.some(Boolean);
+            const cacheNames = await caches.keys();
+            await Promise.all(
+              cacheNames
+                .filter((name) => name.startsWith('cafe-exquisito-'))
+                .map((name) => caches.delete(name))
+            );
+          } catch (error) {
+            console.error('No se pudo limpiar la caché PWA local:', error);
+          }
+        }
+
+        if (reloadAfterCleanup) {
+          window.location.reload();
+          return;
+        }
+
+        await import('/src/main.jsx');
+      })().catch((error) => {
+        console.error('No se pudo iniciar Café Exquisito:', error);
+        const root = document.getElementById('root');
+        if (root) {
+          const offline = !navigator.onLine;
+          root.innerHTML = `<main style="box-sizing:border-box;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem;background:#1a0f00;color:#f5e6c8;font:16px/1.6 Arial,sans-serif"><section style="box-sizing:border-box;width:100%;max-width:38rem;padding:clamp(1.25rem,5vw,2.5rem);background:#2c1a0e;border:1px solid #c67c3f;border-radius:1rem"><h1 style="margin:0 0 1rem;font-size:clamp(1.5rem,6vw,2rem)">No se pudo abrir Café Exquisito</h1><p>${offline ? 'Parece que no hay conexión a internet.' : 'La página tuvo un problema al iniciar.'} Revisa tu Wi-Fi o tus datos móviles y vuelve a intentarlo.</p><p style="font-size:.92rem;color:#d0b894">Si no se corrige, cierra y vuelve a abrir la app. En celular, también puedes cerrar la app desde las aplicaciones recientes. En computadora o Mac, prueba recargar la pestaña o abrir el sitio de nuevo en el navegador.</p><div style="display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.5rem"><button onclick="location.reload()" style="padding:.75rem 1rem;border:0;border-radius:999px;background:#c67c3f;color:#1a0f00;font-weight:700;cursor:pointer">Intentar de nuevo</button><button onclick="location.href='/'" style="padding:.75rem 1rem;border:1px solid #c67c3f;border-radius:999px;background:transparent;color:#f5e6c8;font-weight:700;cursor:pointer">Volver al inicio</button></div><p style="margin:1rem 0 0;font-size:.8rem;color:#b89a76">Si el problema continúa, espera un momento y vuelve a intentarlo.</p></section></main>`;
+        }
+      });
+    </script>
+  </body>
+</html>

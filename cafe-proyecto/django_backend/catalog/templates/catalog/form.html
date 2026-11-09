@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{{ title }}</title></head>
+<body>
+  <h1>{{ title }}</h1>
+  <form method="post">{% csrf_token %}{{ form.as_p }}<button type="submit">Guardar</button></form>
+  <a href="{% url 'product-list' %}">Volver al catálogo</a>
+</body>
+</html>

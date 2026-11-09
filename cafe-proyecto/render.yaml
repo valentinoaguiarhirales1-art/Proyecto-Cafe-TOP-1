@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: cafe-exquisito-api
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: EMPLOYER_ACCESS_KEY
+        generateValue: true

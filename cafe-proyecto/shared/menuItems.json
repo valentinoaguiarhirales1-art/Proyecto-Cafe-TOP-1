@@ -1,0 +1,2204 @@
+[
+  {
+    "name": "Café Americano",
+    "price": 46,
+    "description": "Café Americano, preparado al momento. Chico $46, mediano $52, grande $60.",
+    "category": "Bebidas",
+    "imageUrl": "/images/menu/caf-americano.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 6
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 14
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Leche vegetal",
+          "extraPrice": 20
+        },
+        {
+          "name": "Shot extra Segafredo espresso",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Espresso Americano",
+    "price": 52,
+    "description": "Espresso Americano, preparado al momento. Chico $52, mediano $60, grande $68.",
+    "category": "Bebidas",
+    "imageUrl": "/images/menu/espresso-americano.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 8
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 16
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Leche vegetal",
+          "extraPrice": 20
+        },
+        {
+          "name": "Shot extra Segafredo espresso",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Cappuccino",
+    "price": 60,
+    "description": "Cappuccino, preparado al momento. Chico $60, mediano $69, grande $78.",
+    "category": "Bebidas",
+    "imageUrl": "/images/menu/cappuccino.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 9
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 18
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Leche vegetal",
+          "extraPrice": 20
+        },
+        {
+          "name": "Shot extra Segafredo espresso",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Cappulatte",
+    "price": 60,
+    "description": "Cappulatte, preparado al momento. Chico $60, mediano $69, grande $78.",
+    "category": "Bebidas",
+    "imageUrl": "/images/menu/cappulatte.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 9
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 18
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Leche vegetal",
+          "extraPrice": 20
+        },
+        {
+          "name": "Shot extra Segafredo espresso",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Latte",
+    "price": 60,
+    "description": "Latte, preparado al momento. Chico $60, mediano $69, grande $78.",
+    "category": "Bebidas",
+    "imageUrl": "/images/menu/latte.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 9
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 18
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Leche vegetal",
+          "extraPrice": 20
+        },
+        {
+          "name": "Shot extra Segafredo espresso",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Mocha",
+    "price": 75,
+    "description": "Mocha, preparado al momento. Chico $75, mediano $85, grande $95.",
+    "category": "Bebidas",
+    "imageUrl": "/images/menu/mocha.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 10
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 20
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Leche vegetal",
+          "extraPrice": 20
+        },
+        {
+          "name": "Shot extra Segafredo espresso",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Mocha Chocolate Blanco",
+    "price": 82,
+    "description": "Mocha Chocolate Blanco, preparado al momento. Chico $82, mediano $96, grande $112.",
+    "category": "Bebidas",
+    "imageUrl": "/images/menu/mocha-chocolate-blanco.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 14
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 30
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Leche vegetal",
+          "extraPrice": 20
+        },
+        {
+          "name": "Shot extra Segafredo espresso",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Caramelo Macchiato",
+    "price": 82,
+    "description": "Caramelo Macchiato, preparado al momento. Chico $82, mediano $96, grande $112.",
+    "category": "Bebidas",
+    "imageUrl": "/images/menu/caramelo-macchiato.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 14
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 30
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Leche vegetal",
+          "extraPrice": 20
+        },
+        {
+          "name": "Shot extra Segafredo espresso",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Cappuccino Vainilla",
+    "price": 75,
+    "description": "Cappuccino Vainilla, preparado al momento. Chico $75, mediano $85, grande $95.",
+    "category": "Bebidas",
+    "imageUrl": "/images/menu/cappuccino-vainilla.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 10
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 20
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Leche vegetal",
+          "extraPrice": 20
+        },
+        {
+          "name": "Shot extra Segafredo espresso",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Cappuccino Cajeta",
+    "price": 82,
+    "description": "Cappuccino Cajeta, preparado al momento. Chico $82, mediano $96, grande $112.",
+    "category": "Bebidas",
+    "imageUrl": "/images/menu/cappuccino-cajeta.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 14
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 30
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Leche vegetal",
+          "extraPrice": 20
+        },
+        {
+          "name": "Shot extra Segafredo espresso",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Té",
+    "price": 60,
+    "description": "Té, servido al momento. Chico $60, mediano $69, grande $78.",
+    "category": "Bebidas",
+    "imageUrl": "/images/menu/t.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 9
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 18
+        }
+      ],
+      "extras": [
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Tisana",
+    "price": 60,
+    "description": "Tisana, servido al momento. Chico $60, mediano $69, grande $78.",
+    "category": "Bebidas",
+    "imageUrl": "/images/menu/foto-verificada-tisana.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 9
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 18
+        }
+      ],
+      "extras": [
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Chocolate",
+    "price": 66,
+    "description": "Chocolate, servido al momento. Chico $66, mediano $74, grande $82.",
+    "category": "Bebidas",
+    "imageUrl": "/images/menu/chocolate.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 8
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 16
+        }
+      ],
+      "extras": [
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Chai Té de Especias",
+    "price": 82,
+    "description": "Chai Té de Especias, servido al momento. Chico $82, mediano $96, grande $112.",
+    "category": "Bebidas",
+    "imageUrl": "/images/menu/chai-t-de-especias.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 14
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 30
+        }
+      ],
+      "extras": [
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Chai Té de Vainilla",
+    "price": 82,
+    "description": "Chai Té de Vainilla, servido al momento. Chico $82, mediano $96, grande $112.",
+    "category": "Bebidas",
+    "imageUrl": "/images/menu/chai-te-de-vainilla.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 14
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 30
+        }
+      ],
+      "extras": [
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Chai Té de Frambuesa",
+    "price": 99,
+    "description": "Chai Té de Frambuesa, servido al momento. Chico $99, mediano $115, grande $132.",
+    "category": "Bebidas",
+    "imageUrl": "/images/menu/chai-t-de-frambuesa.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 16
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 33
+        }
+      ],
+      "extras": [
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Chai Té de Manzana",
+    "price": 99,
+    "description": "Chai Té de Manzana, servido al momento. Chico $99, mediano $115, grande $132.",
+    "category": "Bebidas",
+    "imageUrl": "/images/menu/chai-t-de-manzana.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 16
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 33
+        }
+      ],
+      "extras": [
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Chai Té sin Azúcar",
+    "price": 99,
+    "description": "Chai Té sin Azúcar, servido al momento. Chico $99, mediano $115, grande $132.",
+    "category": "Bebidas",
+    "imageUrl": "/images/menu/chai-t-sin-azcar.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 16
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 33
+        }
+      ],
+      "extras": [
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Matcha",
+    "price": 96,
+    "description": "Matcha, servido al momento. Chico $96, mediano $112, grande $128.",
+    "category": "Bebidas",
+    "imageUrl": "/images/menu/matcha.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 16
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 32
+        }
+      ],
+      "extras": [
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Soda Italiana",
+    "price": 66,
+    "description": "Soda Italiana, servido al momento. Chico $66, mediano $74, grande $82.",
+    "category": "Bebidas",
+    "imageUrl": "/images/menu/soda-italiana.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 8
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 16
+        }
+      ],
+      "extras": [
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Euro Soda",
+    "price": 66,
+    "description": "Euro Soda, servido al momento. Chico $66, mediano $74, grande $82.",
+    "category": "Bebidas",
+    "imageUrl": "/images/menu/soda-italiana.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 8
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 16
+        }
+      ],
+      "extras": [
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Jugo de Naranja",
+    "price": 80,
+    "description": "Jugo de Naranja, servido al momento. Chico $80, mediano $95, grande $110.",
+    "category": "Bebidas",
+    "imageUrl": "/images/menu/jugo-de-naranja.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 15
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 30
+        }
+      ],
+      "extras": [
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Espresso Sencillo",
+    "price": 35,
+    "description": "Espresso Sencillo Segafredo, preparado al momento.",
+    "category": "Bebidas",
+    "imageUrl": "/images/menu/foto-verificada-espresso.jpg",
+    "customization": {
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Leche vegetal",
+          "extraPrice": 20
+        },
+        {
+          "name": "Shot extra Segafredo espresso",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Espresso Doble",
+    "price": 60,
+    "description": "Espresso Doble Segafredo, preparado al momento.",
+    "category": "Bebidas",
+    "imageUrl": "/images/menu/espresso-doble.jpg",
+    "customization": {
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Leche vegetal",
+          "extraPrice": 20
+        },
+        {
+          "name": "Shot extra Segafredo espresso",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Frappe Mocha",
+    "price": 96,
+    "description": "Frappe mocha. Chico $96, mediano $112, grande $128. Con café.",
+    "category": "Frappes",
+    "imageUrl": "/images/menu/frappe-mocha.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 16
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 32
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Shot extra Segafredo espresso",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Frappe Oreo",
+    "price": 96,
+    "description": "Frappe oreo. Chico $96, mediano $112, grande $128. Con café.",
+    "category": "Frappes",
+    "imageUrl": "/images/menu/frappe-oreo.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 16
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 32
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Shot extra Segafredo espresso",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Frappe Caramelo",
+    "price": 96,
+    "description": "Frappe caramelo. Chico $96, mediano $112, grande $128. Con café.",
+    "category": "Frappes",
+    "imageUrl": "/images/menu/frappe-caramelo.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 16
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 32
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Shot extra Segafredo espresso",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Frappe Original",
+    "price": 96,
+    "description": "Frappe original. Chico $96, mediano $112, grande $128. Sin cafeína.",
+    "category": "Frappes",
+    "imageUrl": "/images/menu/frappe-original.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 16
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 32
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Frappe Mocha Mint",
+    "price": 96,
+    "description": "Frappe mocha mint. Chico $96, mediano $112, grande $128. Sin cafeína.",
+    "category": "Frappes",
+    "imageUrl": "/images/producto-sin-foto.svg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 16
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 32
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Frappe Reeses",
+    "price": 96,
+    "description": "Frappe reeses. Chico $96, mediano $112, grande $128. Sin cafeína.",
+    "category": "Frappes",
+    "imageUrl": "/images/menu/frappe-reeses.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 16
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 32
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Frappe Java Chip",
+    "price": 96,
+    "description": "Frappe java chip. Chico $96, mediano $112, grande $128. Sin cafeína.",
+    "category": "Frappes",
+    "imageUrl": "/images/menu/frappe-java-chip.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 16
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 32
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Frappe Vainilla",
+    "price": 96,
+    "description": "Frappe vainilla. Chico $96, mediano $112, grande $128. Sin cafeína.",
+    "category": "Frappes",
+    "imageUrl": "/images/menu/frappe-vainilla.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 16
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 32
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Frappe Chocolate Blanco",
+    "price": 96,
+    "description": "Frappe chocolate blanco. Chico $96, mediano $112, grande $128. Sin cafeína.",
+    "category": "Frappes",
+    "imageUrl": "/images/producto-sin-foto.svg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 16
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 32
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Frappe Avellana",
+    "price": 96,
+    "description": "Frappe avellana. Chico $96, mediano $112, grande $128. Sin cafeína.",
+    "category": "Frappes",
+    "imageUrl": "/images/menu/frappe-avellana.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 16
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 32
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Frappe Taro",
+    "price": 96,
+    "description": "Frappe taro. Chico $96, mediano $112, grande $128. Sin cafeína.",
+    "category": "Frappes",
+    "imageUrl": "/images/menu/frappe-taro.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 16
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 32
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Frappe Coco",
+    "price": 96,
+    "description": "Frappe coco. Chico $96, mediano $112, grande $128. Sin cafeína.",
+    "category": "Frappes",
+    "imageUrl": "/images/menu/foto-revisada-2.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 16
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 32
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Frappe Horchata",
+    "price": 96,
+    "description": "Frappe horchata. Chico $96, mediano $112, grande $128. Sin cafeína.",
+    "category": "Frappes",
+    "imageUrl": "/images/menu/frappe-horchata.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 16
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 32
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Frappe Matcha",
+    "price": 96,
+    "description": "Frappe matcha. Chico $96, mediano $112, grande $128. Sin cafeína.",
+    "category": "Frappes",
+    "imageUrl": "/images/menu/frappe-matcha.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 16
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 32
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Frappe Chai",
+    "price": 96,
+    "description": "Frappe chai. Chico $96, mediano $112, grande $128. Sin cafeína.",
+    "category": "Frappes",
+    "imageUrl": "/images/menu/frappe-chai.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 16
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 32
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Frappe Light Taro",
+    "price": 99,
+    "description": "Frappe light taro. Chico $99, mediano $115, grande $134.",
+    "category": "Frappes",
+    "imageUrl": "/images/menu/frappe-taro.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 16
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 35
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Frappe Light Mocha",
+    "price": 99,
+    "description": "Frappe light mocha. Chico $99, mediano $115, grande $134.",
+    "category": "Frappes",
+    "imageUrl": "/images/menu/frappe-light-mocha.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 16
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 35
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Frappe Light Vainilla",
+    "price": 99,
+    "description": "Frappe light vainilla. Chico $99, mediano $115, grande $134.",
+    "category": "Frappes",
+    "imageUrl": "/images/menu/foto-revisada-3.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 16
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 35
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Frappe Light Chai de Especias",
+    "price": 99,
+    "description": "Frappe light chai de especias. Chico $99, mediano $115, grande $134.",
+    "category": "Frappes",
+    "imageUrl": "/images/menu/frappe-light-chai-de-especias.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 16
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 35
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Frappe Light Chai de Vainilla",
+    "price": 99,
+    "description": "Frappe light chai de vainilla. Chico $99, mediano $115, grande $134.",
+    "category": "Frappes",
+    "imageUrl": "/images/producto-sin-foto.svg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Chico (CH)",
+          "extraPrice": 0
+        },
+        {
+          "name": "Mediano (M)",
+          "extraPrice": 16
+        },
+        {
+          "name": "Grande (G)",
+          "extraPrice": 35
+        }
+      ],
+      "extras": [
+        {
+          "name": "Jarabe",
+          "extraPrice": 20
+        },
+        {
+          "name": "Azúcar extra",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Chilaquiles Rojos",
+    "price": 120,
+    "description": "Chilaquiles rojos. Agrega huevo por $30 o pollo por $40.",
+    "imageUrl": "/images/menu/verificada-chilaquiles-rojos.jpg",
+    "customization": {
+      "extras": [
+        {
+          "name": "Huevo",
+          "extraPrice": 30
+        },
+        {
+          "name": "Pollo",
+          "extraPrice": 40
+        }
+      ]
+    },
+    "category": "Desayunos"
+  },
+  {
+    "name": "Chilaquiles Verdes",
+    "price": 120,
+    "description": "Chilaquiles verdes. Agrega huevo por $30 o pollo por $40.",
+    "imageUrl": "/images/menu/foto-verificada-0.jpg",
+    "customization": {
+      "extras": [
+        {
+          "name": "Huevo",
+          "extraPrice": 30
+        },
+        {
+          "name": "Pollo",
+          "extraPrice": 40
+        }
+      ]
+    },
+    "category": "Desayunos"
+  },
+  {
+    "name": "Desayuno Americano",
+    "price": 220,
+    "description": "Incluye huevo, jamón o tocino, hash brown y dos hotcakes.",
+    "imageUrl": "/images/menu/desayuno-americano.jpg",
+    "category": "Desayunos",
+    "customization": {
+      "extras": [
+        {
+          "name": "Tocino",
+          "extraPrice": 40
+        },
+        {
+          "name": "Pollo",
+          "extraPrice": 40
+        },
+        {
+          "name": "Jamón",
+          "extraPrice": 40
+        },
+        {
+          "name": "Huevo",
+          "extraPrice": 30
+        }
+      ]
+    }
+  },
+  {
+    "name": "Omelette con Queso",
+    "price": 150,
+    "description": "Omelette con queso. Agrega verduras por $30 o tocino o jamón por $40.",
+    "imageUrl": "/images/menu/foto-verificada-2.jpg",
+    "customization": {
+      "extras": [
+        {
+          "name": "Verduras",
+          "extraPrice": 30
+        },
+        {
+          "name": "Tocino",
+          "extraPrice": 40
+        },
+        {
+          "name": "Jamón",
+          "extraPrice": 40
+        }
+      ]
+    },
+    "category": "Desayunos"
+  },
+  {
+    "name": "Hotcakes (3 piezas)",
+    "price": 130,
+    "description": "Tres hotcakes preparados al momento.",
+    "imageUrl": "/images/menu/foto-verificada-3.jpg",
+    "category": "Desayunos",
+    "customization": {
+      "extras": [
+        {
+          "name": "Tocino",
+          "extraPrice": 40
+        },
+        {
+          "name": "Pollo",
+          "extraPrice": 40
+        },
+        {
+          "name": "Jamón",
+          "extraPrice": 40
+        },
+        {
+          "name": "Huevo",
+          "extraPrice": 30
+        }
+      ]
+    }
+  },
+  {
+    "name": "Sándwich Mañanero",
+    "price": 130,
+    "description": "Sándwich mañanero preparado al momento. Extras de tocino, pollo o jamón +$40; huevo +$30.",
+    "imageUrl": "/images/menu/sndwich-maanero.jpg",
+    "customization": {
+      "extras": [
+        {
+          "name": "Tocino",
+          "extraPrice": 40
+        },
+        {
+          "name": "Pollo",
+          "extraPrice": 40
+        },
+        {
+          "name": "Jamón",
+          "extraPrice": 40
+        },
+        {
+          "name": "Huevo",
+          "extraPrice": 30
+        }
+      ]
+    },
+    "category": "Desayunos"
+  },
+  {
+    "name": "BLT Grilled Cheese",
+    "price": 160,
+    "description": "Sándwich BLT de queso a la parrilla.",
+    "category": "Lunch",
+    "imageUrl": "/images/menu/alimento-blt-grilled-cheese.jpg",
+    "customization": {
+      "extras": [
+        {
+          "name": "Tocino",
+          "extraPrice": 40
+        },
+        {
+          "name": "Pollo",
+          "extraPrice": 40
+        },
+        {
+          "name": "Jamón",
+          "extraPrice": 40
+        },
+        {
+          "name": "Huevo",
+          "extraPrice": 30
+        }
+      ]
+    }
+  },
+  {
+    "name": "Club Sandwich",
+    "price": 160,
+    "description": "Club sandwich preparado al momento.",
+    "category": "Lunch",
+    "imageUrl": "/images/menu/foto-verificada-5.jpg",
+    "customization": {
+      "extras": [
+        {
+          "name": "Tocino",
+          "extraPrice": 40
+        },
+        {
+          "name": "Pollo",
+          "extraPrice": 40
+        },
+        {
+          "name": "Jamón",
+          "extraPrice": 40
+        },
+        {
+          "name": "Huevo",
+          "extraPrice": 30
+        }
+      ]
+    }
+  },
+  {
+    "name": "Chicken Chipotle",
+    "price": 160,
+    "description": "Sándwich de pollo con chipotle.",
+    "category": "Lunch",
+    "imageUrl": "/images/menu/chicken-chipotle.jpg",
+    "customization": {
+      "extras": [
+        {
+          "name": "Tocino",
+          "extraPrice": 40
+        },
+        {
+          "name": "Pollo",
+          "extraPrice": 40
+        },
+        {
+          "name": "Jamón",
+          "extraPrice": 40
+        },
+        {
+          "name": "Huevo",
+          "extraPrice": 30
+        }
+      ]
+    }
+  },
+  {
+    "name": "Sándwich",
+    "price": 98,
+    "description": "Sándwich preparado al momento.",
+    "category": "Lunch",
+    "imageUrl": "/images/menu/foto-verificada-7.jpg",
+    "customization": {
+      "extras": [
+        {
+          "name": "Tocino",
+          "extraPrice": 40
+        },
+        {
+          "name": "Pollo",
+          "extraPrice": 40
+        },
+        {
+          "name": "Jamón",
+          "extraPrice": 40
+        },
+        {
+          "name": "Huevo",
+          "extraPrice": 30
+        }
+      ]
+    }
+  },
+  {
+    "name": "Croissant",
+    "price": 98,
+    "description": "Croissant preparado al momento.",
+    "category": "Lunch",
+    "imageUrl": "/images/menu/foto-verificada-8.jpg",
+    "customization": {
+      "extras": [
+        {
+          "name": "Tocino",
+          "extraPrice": 40
+        },
+        {
+          "name": "Pollo",
+          "extraPrice": 40
+        },
+        {
+          "name": "Jamón",
+          "extraPrice": 40
+        },
+        {
+          "name": "Huevo",
+          "extraPrice": 30
+        }
+      ]
+    }
+  },
+  {
+    "name": "Calzone",
+    "price": 150,
+    "description": "Calzone horneado.",
+    "category": "Lunch",
+    "imageUrl": "/images/menu/foto-verificada-9.jpg",
+    "customization": {
+      "extras": [
+        {
+          "name": "Tocino",
+          "extraPrice": 40
+        },
+        {
+          "name": "Pollo",
+          "extraPrice": 40
+        },
+        {
+          "name": "Jamón",
+          "extraPrice": 40
+        },
+        {
+          "name": "Huevo",
+          "extraPrice": 30
+        }
+      ]
+    }
+  },
+  {
+    "name": "Ensalada de Pollo",
+    "price": 150,
+    "description": "Ensalada de pollo preparada al momento.",
+    "category": "Lunch",
+    "imageUrl": "/images/menu/foto-ensalada-pollo.jpg",
+    "customization": {
+      "extras": [
+        {
+          "name": "Tocino",
+          "extraPrice": 40
+        },
+        {
+          "name": "Pollo",
+          "extraPrice": 40
+        },
+        {
+          "name": "Jamón",
+          "extraPrice": 40
+        },
+        {
+          "name": "Huevo",
+          "extraPrice": 30
+        }
+      ]
+    }
+  },
+  {
+    "name": "Enchiladas de Pollo",
+    "price": 170,
+    "description": "Enchiladas de pollo.",
+    "category": "Lunch",
+    "imageUrl": "/images/menu/foto-verificada-10.jpg",
+    "customization": {
+      "extras": [
+        {
+          "name": "Tocino",
+          "extraPrice": 40
+        },
+        {
+          "name": "Pollo",
+          "extraPrice": 40
+        },
+        {
+          "name": "Jamón",
+          "extraPrice": 40
+        },
+        {
+          "name": "Huevo",
+          "extraPrice": 30
+        }
+      ]
+    }
+  },
+  {
+    "name": "Papas Fritas",
+    "price": 60,
+    "description": "Porción de papas fritas.",
+    "category": "Lunch",
+    "imageUrl": "/images/menu/foto-papas-fritas.jpg",
+    "customization": {
+      "extras": [
+        {
+          "name": "Tocino",
+          "extraPrice": 40
+        },
+        {
+          "name": "Pollo",
+          "extraPrice": 40
+        },
+        {
+          "name": "Jamón",
+          "extraPrice": 40
+        },
+        {
+          "name": "Huevo",
+          "extraPrice": 30
+        }
+      ]
+    }
+  },
+  {
+    "name": "Baguette",
+    "price": 98,
+    "description": "Baguette preparado al momento. Mediano $98, grande $150.",
+    "category": "Lunch",
+    "imageUrl": "/images/menu/foto-verificada-12.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Mediano",
+          "extraPrice": 0
+        },
+        {
+          "name": "Grande",
+          "extraPrice": 52
+        }
+      ],
+      "extras": [
+        {
+          "name": "Tocino",
+          "extraPrice": 40
+        },
+        {
+          "name": "Pollo",
+          "extraPrice": 40
+        },
+        {
+          "name": "Jamón",
+          "extraPrice": 40
+        },
+        {
+          "name": "Huevo",
+          "extraPrice": 30
+        }
+      ]
+    }
+  },
+  {
+    "name": "Sopa de Lentejas",
+    "price": 98,
+    "description": "Sopa de lentejas.",
+    "category": "Lunch",
+    "imageUrl": "/images/menu/sopa-de-lentejas.jpg",
+    "customization": {
+      "extras": [
+        {
+          "name": "Tocino",
+          "extraPrice": 40
+        },
+        {
+          "name": "Pollo",
+          "extraPrice": 40
+        },
+        {
+          "name": "Jamón",
+          "extraPrice": 40
+        },
+        {
+          "name": "Huevo",
+          "extraPrice": 30
+        }
+      ]
+    }
+  },
+  {
+    "name": "Sopa de Brócoli",
+    "price": 98,
+    "description": "Sopa de brócoli.",
+    "category": "Lunch",
+    "imageUrl": "/images/menu/sopa-de-brcoli.jpg",
+    "customization": {
+      "extras": [
+        {
+          "name": "Tocino",
+          "extraPrice": 40
+        },
+        {
+          "name": "Pollo",
+          "extraPrice": 40
+        },
+        {
+          "name": "Jamón",
+          "extraPrice": 40
+        },
+        {
+          "name": "Huevo",
+          "extraPrice": 30
+        }
+      ]
+    }
+  },
+  {
+    "name": "Sopa de Tomate",
+    "price": 98,
+    "description": "Sopa de tomate.",
+    "category": "Lunch",
+    "imageUrl": "/images/menu/alimento-sopa-de-tomate.jpg",
+    "customization": {
+      "extras": [
+        {
+          "name": "Tocino",
+          "extraPrice": 40
+        },
+        {
+          "name": "Pollo",
+          "extraPrice": 40
+        },
+        {
+          "name": "Jamón",
+          "extraPrice": 40
+        },
+        {
+          "name": "Huevo",
+          "extraPrice": 30
+        }
+      ]
+    }
+  },
+  {
+    "name": "Galletas",
+    "price": 80,
+    "description": "Galletas. Presentaciones de $80 y $100.",
+    "imageUrl": "/images/menu/alimento-galletas.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Presentación $80",
+          "extraPrice": 0
+        },
+        {
+          "name": "Presentación $100",
+          "extraPrice": 20
+        }
+      ],
+      "extras": [
+        {
+          "name": "Calentar",
+          "extraPrice": 0
+        }
+      ]
+    },
+    "category": "Reposteria"
+  },
+  {
+    "name": "Brownie",
+    "price": 40,
+    "description": "Brownie. Presentaciones de $40 y $75.",
+    "imageUrl": "/images/menu/foto-verificada-15.jpg",
+    "customization": {
+      "sizes": [
+        {
+          "name": "Presentación $40",
+          "extraPrice": 0
+        },
+        {
+          "name": "Presentación $75",
+          "extraPrice": 35
+        }
+      ],
+      "extras": [
+        {
+          "name": "Calentar",
+          "extraPrice": 0
+        }
+      ]
+    },
+    "category": "Reposteria"
+  },
+  {
+    "name": "Rol de Canela",
+    "price": 60,
+    "description": "Rol de Canela recién preparado.",
+    "category": "Reposteria",
+    "imageUrl": "/images/menu/foto-verificada-16.jpg",
+    "customization": {
+      "extras": [
+        {
+          "name": "Calentar",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Muffin",
+    "price": 70,
+    "description": "Muffin recién preparado.",
+    "category": "Reposteria",
+    "imageUrl": "/images/menu/muffin.jpg",
+    "customization": {
+      "extras": [
+        {
+          "name": "Calentar",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Scone",
+    "price": 60,
+    "description": "Scone recién preparado.",
+    "category": "Reposteria",
+    "imageUrl": "/images/menu/foto-revisada-7.jpg",
+    "customization": {
+      "extras": [
+        {
+          "name": "Calentar",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Cupcake",
+    "price": 60,
+    "description": "Cupcake recién preparado.",
+    "category": "Reposteria",
+    "imageUrl": "/images/menu/foto-revisada-8.jpg",
+    "customization": {
+      "extras": [
+        {
+          "name": "Calentar",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Éclair",
+    "price": 60,
+    "description": "Éclair recién preparado.",
+    "category": "Reposteria",
+    "imageUrl": "/images/menu/foto-revisada-9.jpg",
+    "customization": {
+      "extras": [
+        {
+          "name": "Calentar",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Panes",
+    "price": 55,
+    "description": "Panes recién preparado.",
+    "category": "Reposteria",
+    "imageUrl": "/images/menu/foto-revisada-10.jpg",
+    "customization": {
+      "extras": [
+        {
+          "name": "Calentar",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Pan Stevia",
+    "price": 50,
+    "description": "Pan Stevia recién preparado.",
+    "category": "Reposteria",
+    "imageUrl": "/images/producto-sin-foto.svg",
+    "customization": {
+      "extras": [
+        {
+          "name": "Calentar",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Pastel Cheesecake",
+    "price": 92,
+    "description": "Rebanada de pastel cheesecake.",
+    "category": "Reposteria",
+    "imageUrl": "/images/menu/verificada-cheesecake.jpg",
+    "customization": {
+      "extras": [
+        {
+          "name": "Calentar",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Pay de Queso y Cereza",
+    "price": 92,
+    "description": "Rebanada de pay de queso y cereza.",
+    "category": "Reposteria",
+    "imageUrl": "/images/menu/foto-revisada-11.jpg",
+    "customization": {
+      "extras": [
+        {
+          "name": "Calentar",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Pay de Guayaba",
+    "price": 105,
+    "description": "Rebanada de pay de guayaba.",
+    "category": "Reposteria",
+    "imageUrl": "/images/producto-sin-foto.svg",
+    "customization": {
+      "extras": [
+        {
+          "name": "Calentar",
+          "extraPrice": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "Pay de Manzana",
+    "price": 130,
+    "description": "Rebanada de pay de manzana.",
+    "category": "Reposteria",
+    "imageUrl": "/images/menu/verificada-pay-manzana.jpg",
+    "customization": {
+      "extras": [
+        {
+          "name": "Calentar",
+          "extraPrice": 0
+        }
+      ]
+    }
+  }
+]

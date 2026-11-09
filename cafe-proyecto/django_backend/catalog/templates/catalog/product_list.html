@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Catálogo | Café Exquisito</title></head>
+<body>
+  <h1>Catálogo de Café Exquisito</h1>
+  {% if user.is_authenticated %}
+    <p>Hola, {{ user.username }}.</p>
+    <form method="post" action="{% url 'logout' %}">{% csrf_token %}<button type="submit">Cerrar sesión</button></form>
+  {% else %}
+    <a href="{% url 'login' %}">Iniciar sesión</a>
+    <a href="{% url 'register' %}">Crear cuenta</a>
+  {% endif %}
+  <nav>
+    {% if user.is_staff %}<a href="{% url 'staff-dashboard' %}">Panel del personal</a> |{% endif %}
+    <a href="{% url 'create-order' %}">Nuevo pedido</a> |
+    <a href="{% url 'my-orders' %}">Mis pedidos</a> |
+    <a href="{% url 'create-reservation' %}">Solicitar reserva</a> |
+    <a href="{% url 'my-reservations' %}">Mis reservas</a>
+  </nav>
+  <ul>
+    {% for product in products %}
+      <li>
+        {{ product.name }} — {{ product.category.name }} — ${{ product.price }}
+        {% if user.is_staff and perms.catalog.change_product %}<a href="{% url 'product-edit' product.pk %}">Editar</a>{% endif %}
+      </li>
+    {% empty %}<li>Todavía no hay productos disponibles.</li>{% endfor %}
+  </ul>
+</body>
+</html>
