@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { askBarista, djangoChatEnabled } from '../api';
-import { ArrowDown, Coffee, Send, X } from 'lucide-react';
+import { ArrowDown, CalendarDays, ClipboardList, Coffee, Gift, MapPin, Search, Send, X } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { formatChatText } from '../utils/chatText';
 
@@ -15,7 +15,7 @@ function AssistantText({ text }) {
   ));
 }
 
-export default function BaristaChat() {
+export default function BaristaChat({ onNavigate, onSearch }) {
   const { t } = useLanguage();
   const [open, setOpen] = useState(false);
   const [msgs, setMsgs] = useState(() => [{ role: 'bot', text: t('chat_welcome') }]);
@@ -54,11 +54,18 @@ export default function BaristaChat() {
     setInput('');
     setLoading(true);
     try {
-      const { data } = await askBarista(userMsg);
+      const history = msgs.slice(-8)
+        .filter(message => message.role === 'bot' && message.actions?.length)
+        .map(message => ({ role: 'bot', text: message.actions.map(action => action.name).join(', ') }));
+      const { data } = await askBarista(userMsg, history);
       if (typeof data?.recommendation !== 'string' || !data.recommendation.trim()) {
         throw new Error('La respuesta del asistente está vacía.');
       }
-      setMsgs(prev => [...prev, { role: 'bot', text: data.recommendation }]);
+      setMsgs(prev => [...prev, {
+        role: 'bot',
+        text: data.recommendation,
+        actions: Array.isArray(data.actions) ? data.actions.filter(action => typeof action?.name === 'string') : [],
+      }]);
     } catch (error) {
       console.error('No se pudo obtener una respuesta del asistente:', error);
       setMsgs(prev => [...prev, { role: 'bot', text: t('chat_error') }]);
@@ -103,10 +110,23 @@ export default function BaristaChat() {
             <div ref={messagesRef} onScroll={handleScroll} role="log" aria-live="polite" aria-label={t('chat_messages')}
               className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-3 sm:p-4 space-y-3">
               {msgs.map((message, index) => (
-                <div key={index} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                <div key={index} className={`flex flex-col ${message.role === 'user' ? 'items-end' : 'items-start'}`}>
                   <div className={`max-w-[90%] min-w-0 px-4 py-2.5 rounded-2xl text-sm leading-relaxed [overflow-wrap:anywhere] ${message.role === 'user' ? 'bg-cafe-caramel text-cafe-dark rounded-tr-sm whitespace-pre-wrap' : 'bg-cafe-dark/90 text-cafe-cream rounded-tl-sm border border-cafe-brown/30'}`}>
                     {message.role === 'bot' ? <AssistantText text={message.text} /> : message.text}
                   </div>
+                  {message.role === 'bot' && message.actions?.length > 0 && (
+                    <div className="mt-2 flex max-w-full flex-wrap gap-2 pl-1">
+                      {message.actions.map(action => (
+                        <button key={`${action.name}-${action.category}`} type="button"
+                          onClick={() => { onSearch?.(action.name); setOpen(false); }}
+                          className="inline-flex max-w-full items-center gap-1.5 rounded-full border border-cafe-caramel/50 bg-cafe-dark/90 px-3 py-1.5 text-left text-xs text-cafe-cream hover:border-cafe-gold hover:text-cafe-gold">
+                          <Search size={13} className="shrink-0" aria-hidden="true" />
+                          <span className="truncate">Ver {action.name}</span>
+                          {action.category && <span className="hidden text-cafe-brown sm:inline">· {action.category}</span>}
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ))}
               {loading && (
@@ -126,6 +146,22 @@ export default function BaristaChat() {
               </button>
             )}
           </div>
+
+          <nav aria-label="Ir a una sección" className="flex shrink-0 gap-2 overflow-x-auto border-t border-cafe-brown/20 px-3 py-2">
+            {[
+              { page: 'menu', label: 'Menú', Icon: Coffee },
+              { page: 'promotions', label: 'Promos', Icon: Gift },
+              { page: 'events', label: 'Eventos', Icon: CalendarDays },
+              { page: 'reservations', label: 'Reservar', Icon: MapPin },
+              { page: 'orders', label: 'Pedidos', Icon: ClipboardList },
+            ].map(({ page, label, Icon }) => (
+              <button key={page} type="button" onClick={() => { onNavigate?.(page); setOpen(false); }}
+                className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-cafe-dark/70 px-3 py-1.5 text-xs text-cafe-cream hover:bg-cafe-caramel/20 hover:text-cafe-gold">
+                <Icon size={14} aria-hidden="true" />
+                {label}
+              </button>
+            ))}
+          </nav>
 
           <form onSubmit={send} className="p-3 border-t border-cafe-brown/30 flex items-end gap-2 shrink-0">
             <textarea value={input} onChange={event => setInput(event.target.value)} maxLength={500}

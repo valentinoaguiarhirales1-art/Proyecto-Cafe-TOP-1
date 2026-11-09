@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { djangoAuthEnabled, getMyDjangoOrders, getMyOrders } from '../api';
 import { adaptDjangoOrders } from '../utils/djangoOrders';
 import { useAuth } from '../context/AuthContext';
-import { Package, Clock, CheckCircle, ChefHat, XCircle, Coffee } from 'lucide-react';
+import { Package, Clock, CheckCircle, ChefHat, XCircle, Coffee, Search, X } from 'lucide-react';
 import RecoveryNotice from '../components/RecoveryNotice';
 
 const statusIcon = {
@@ -26,6 +26,7 @@ export default function OrdersPage() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
 
   const loadOrders = async () => {
     setLoading(true);
@@ -42,6 +43,26 @@ export default function OrdersPage() {
   };
 
   useEffect(() => { loadOrders(); }, []);
+
+  const normalizeSearch = (value) => value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLocaleLowerCase();
+  const normalizedSearch = normalizeSearch(searchTerm.trim());
+  const filteredOrders = orders.filter(order => {
+    const searchableText = [
+      order._id,
+      order.status,
+      order.orderType,
+      order.branch,
+      order.totalPrice,
+      new Date(order.createdAt).toLocaleDateString('es-MX'),
+      ...(order.orderItems || []).flatMap(item => [
+        item.name, item.selectedSize, item.selectedMilk, item.notes, ...(item.selectedExtras || []),
+      ]),
+    ].filter(Boolean).join(' ');
+    return normalizeSearch(searchableText).includes(normalizedSearch);
+  });
 
   if (loading) return (
     <div className="min-h-screen pt-20 flex items-center justify-center">
@@ -70,8 +91,32 @@ export default function OrdersPage() {
             <p className="text-cafe-brown mt-2">Cuando pidas un café, aparecerá aquí.</p>
           </div>
         ) : (
-          <div className="space-y-4">
-            {orders.map(order => (
+          <>
+            <label className="relative mb-5 block">
+              <Search size={18} aria-hidden="true" className="absolute left-3 top-1/2 -translate-y-1/2 text-cafe-brown" />
+              <input
+                type="search"
+                value={searchTerm}
+                onChange={event => setSearchTerm(event.target.value)}
+                placeholder="Buscar por producto, fecha o estado..."
+                aria-label="Buscar en mis pedidos"
+                className="input-cafe w-full pl-10 pr-11"
+              />
+              {searchTerm && (
+                <button type="button" onClick={() => setSearchTerm('')} aria-label="Limpiar búsqueda"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-2 text-cafe-brown hover:bg-cafe-brown/20 hover:text-cafe-cream">
+                  <X size={16} aria-hidden="true" />
+                </button>
+              )}
+            </label>
+            {filteredOrders.length === 0 ? (
+              <div role="status" className="rounded-2xl border border-cafe-brown/30 bg-cafe-dark/40 py-10 text-center">
+                <p className="font-serif text-lg text-cafe-cream">No encontré pedidos con “{searchTerm}”</p>
+                <p className="mt-2 text-sm text-cafe-brown">Prueba con el nombre de un producto, la fecha o el estado.</p>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {filteredOrders.map(order => (
               <div key={order._id} className={`card-cafe border ${statusColor[order.status] || ''} animate-slide-up`}>
                 <div className="p-5">
                   {/* Header del pedido */}
@@ -116,8 +161,10 @@ export default function OrdersPage() {
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+                ))}
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>

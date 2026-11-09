@@ -120,7 +120,7 @@ export default function App() {
       )}
       <main className="relative z-10">{renderPage()}</main>
       <CartDrawer onLoginClick={openAuth} onNavigate={handleNavigate} />
-      <BaristaChat />
+      <BaristaChat onNavigate={handleNavigate} onSearch={handleSearch} />
       {showAuthModal && <AuthModal onClose={() => setShowAuthModal(false)} />}
     </div>
   );

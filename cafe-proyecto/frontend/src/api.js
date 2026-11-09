@@ -2,7 +2,7 @@ import axios from 'axios';
 import { withCorrectProductImage, withCorrectPromotionImage } from './utils/productImages';
 import { adaptDjangoProducts } from './utils/djangoProducts';
 import { checkCatalogConnection } from './utils/catalogConnection';
-import { djangoMenuRecommendation } from './utils/djangoMenuAssistant';
+import { djangoMenuRecommendation, getMentionedMenuItems } from './utils/djangoMenuAssistant';
 import { djangoOrderSessionHeaders } from './utils/djangoOrderSession';
 
 const API = axios.create({
@@ -236,10 +236,11 @@ export const upsertSiteSettingJson = (key, value) =>
 
 // IA Barista Virtual
 export const djangoChatEnabled = import.meta.env.VITE_DJANGO_CHAT === 'true';
-export const askBarista = async (prompt) => {
-  if (!djangoChatEnabled) return API.post('/ai/recommend', { prompt });
+export const askBarista = async (prompt, history = []) => {
+  if (!djangoChatEnabled) return API.post('/ai/recommend', { prompt, history });
   const response = await axios.get('/django-api/products', { timeout: 20000 });
   const products = adaptDjangoProducts(response.data);
-  return { data: { recommendation: djangoMenuRecommendation(prompt, products) } };
+  const recommendation = djangoMenuRecommendation(prompt, products, history);
+  return { data: { recommendation, actions: getMentionedMenuItems(recommendation, products) } };
 };
 export const generateDesc   = (data)   => API.post('/ai/describe', data);

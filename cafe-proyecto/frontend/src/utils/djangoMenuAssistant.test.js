@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { djangoMenuRecommendation } from './djangoMenuAssistant.js';
+import { djangoMenuRecommendation, getMentionedMenuItems } from './djangoMenuAssistant.js';
 
 const products = [
   { name: 'Frappé de chocolate', category: 'Frappes', description: 'Bebida fría de chocolate', price: '80.00' },
@@ -22,4 +22,15 @@ test('no recomienda productos ante restricciones alimentarias', () => {
     assert.match(result, /consulta al personal/i);
     assert.doesNotMatch(result, /80\.00/);
   }
+});
+
+test('resuelve preguntas de seguimiento y crea accesos a productos del menú', () => {
+  const history = [{ role: 'bot', text: 'Te recomiendo Frappé de chocolate desde $80 MXN.' }];
+  const answer = djangoMenuRecommendation('¿Dónde encuentro eso?', products, history);
+  assert.match(answer, /Frappé de chocolate está en la sección Frappes/);
+  assert.deepEqual(getMentionedMenuItems(answer, products), [{ name: 'Frappé de chocolate', category: 'Frappes' }]);
+  assert.match(
+    djangoMenuRecommendation('¿Dónde encuentro eso? Tengo alergia a la leche', products, history),
+    /consulta al personal/i,
+  );
 });

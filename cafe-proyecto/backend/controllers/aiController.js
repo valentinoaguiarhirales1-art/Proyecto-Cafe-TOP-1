@@ -3,6 +3,7 @@ const Product = require('../models/Product');
 
 // Inicializar Gemini con la API Key del archivo .env
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
+const normalizeMenuText = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 
 const formatMenuProduct = (product) => {
     const sizePrices = product.customization?.sizes?.map(size => `${size.name}: $${product.price + size.extraPrice}`).join(', ');
@@ -10,8 +11,24 @@ const formatMenuProduct = (product) => {
     return `${product.name} ($${product.price} MXN, ${product.category}${sizeLabel}): ${product.description}`;
 };
 
-const createFallbackRecommendation = (prompt, products) => {
+const createFallbackRecommendation = (prompt, products, history = []) => {
     const normalizedPrompt = prompt.toLowerCase();
+    if (/\b(sin|alerg\w*|intoleran\w*|evitar|evito|prohibid\w*|diabet\w*|descafeinad\w*|embaraz\w*|vegano\w*|vegetarian\w*)\b/i.test(prompt)) {
+        return 'No puedo verificar ingredientes, alérgenos ni restricciones alimentarias. Consulta al personal antes de pedir.';
+    }
+    const asksWhere = /\b(donde|dónde|encuentro|encuentra|ubica|seccion|sección)\b/i.test(prompt);
+    if (asksWhere) {
+        const previousReply = [...history].reverse().find(message => message.role === 'bot')?.text || '';
+        const normalizedReply = normalizeMenuText(previousReply);
+        const previousItem = products
+            .map(product => ({ product, index: normalizedReply.indexOf(normalizeMenuText(product.name)) }))
+            .filter(({ index }) => index >= 0)
+            .sort((first, second) => first.index - second.index)[0]?.product;
+        if (previousItem) {
+            const category = previousItem.category === 'Reposteria' ? 'Repostería' : previousItem.category;
+            return `¡Claro! ${previousItem.name} está en la sección ${category} del menú. Busca “${previousItem.name}” aquí abajo y te llevo directo a encontrarlo.`;
+        }
+    }
     const wantsBreakfast = /desayun|mañana|hambre|comer|salad|ensalada/.test(normalizedPrompt);
     const wantsColdOrSweet = /fr[ií]o|helad|frappe|frapp|dulce|antojo|chocolate/.test(normalizedPrompt);
     const wantsNoCaffeine = /sin cafe[ií]na|descafeinad|no quiero cafe[ií]na/.test(normalizedPrompt);
@@ -60,10 +77,30 @@ const createFallbackRecommendation = (prompt, products) => {
     return `${description}${sizeText}${pairingText}\n\n¿Te gustaría probar esta combinación?`;
 };
 
+const getMentionedItems = (text, products) => {
+    const normalizedText = normalizeMenuText(text);
+    return products
+    .map(product => ({
+        product,
+        index: typeof product.name === 'string' ? normalizedText.indexOf(normalizeMenuText(product.name)) : -1,
+    }))
+    .filter(({ index }) => index >= 0)
+    .sort((first, second) => first.index - second.index)
+    .slice(0, 3)
+    .map(({ product }) => ({ name: product.name, category: product.category }));
+};
+
 // @desc    Barista Virtual IA: Recomienda bebidas y maridaje según el gusto del cliente
 // @route   POST /api/ai/recommend
 exports.recommendProduct = async (req, res) => {
     const prompt = typeof req.body.prompt === 'string' ? req.body.prompt.trim() : '';
+    const history = Array.isArray(req.body.history)
+        ? req.body.history.filter(message => message
+            && ['user', 'bot'].includes(message.role)
+            && typeof message.text === 'string')
+            .slice(-8)
+            .map(message => ({ role: message.role, text: message.text.slice(0, 500) }))
+        : [];
 
     if (!prompt || prompt.length > 500) {
         return res.status(400).json({ error: 'Por favor dinos qué se te antoja o cómo te sientes.' });
@@ -82,22 +119,19 @@ exports.recommendProduct = async (req, res) => {
         if (process.env.GEMINI_API_KEY && process.env.GEMINI_API_KEY !== 'tu_api_key_de_gemini') {
             const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
+            const conversation = history.map(message => `${message.role === 'user' ? 'Cliente' : 'Tú'}: ${message.text}`).join('\n');
             const systemPrompt = `
-Eres el Barista Maestro de una cafetería de especialidad gourmet. Tu trato es cálido, sofisticado y persuasivo.
-Tu objetivo es recomendar al cliente la mejor opción de nuestro menú y sugerir un acompañamiento de repostería o alimento (maridaje) para mejorar su experiencia y aumentar la venta.
+Eres el barista de Café Exquisito. Hablas en español, con calidez y naturalidad, como alguien que atiende en persona: cercano, claro y sin frases rebuscadas.
 
 Menú actual disponible en la cafetería:
 ${menuString}
 
-Petición del cliente: "${prompt}"
+Conversación previa:
+${conversation || '(Es el inicio de la conversación.)'}
 
-Instrucciones:
-1. Recomienda 1 o 2 productos del menú que encajen perfectamente con lo que busca.
-2. Sugiere un maridaje (postre o alimento) del menú que combine bien.
-3. Sé breve, amigable y entusiasta (máximo 3 párrafos cortos).
-4. Menciona el precio inicial y, cuando corresponda, los tamaños/precios indicados en el menú.
-5. No inventes productos, ingredientes ni precios; usa solo el menú disponible.
-6. Escribe texto sencillo, sin asteriscos ni encabezados. Separa las ideas en párrafos cortos y no repitas precios ya mencionados.
+Lo último que dijo el cliente: "${prompt}"
+
+Responde teniendo en cuenta toda la conversación; si pregunta por “eso”, “ese” o dónde encontrar algo, usa el producto que ya mencionaron y dile la sección exacta del menú. Recomienda solo productos reales del menú, con precios correctos; no inventes ingredientes ni afirmes que algo es seguro para alergias o restricciones. Sé breve y conversacional, como una persona amable, y termina con una pregunta sencilla cuando ayude a seguir la charla. No uses encabezados ni asteriscos.
 `;
 
             const result = await model.generateContent(systemPrompt);
@@ -106,11 +140,14 @@ Instrucciones:
 
             return res.json({
                 recommendation: text,
+                actions: getMentionedItems(text, products),
                 source: 'Gemini AI'
             });
         } else {
+            const recommendation = createFallbackRecommendation(prompt, products, history);
             return res.json({
-                recommendation: createFallbackRecommendation(prompt, products),
+                recommendation,
+                actions: getMentionedItems(recommendation, products),
                 source: 'Barista Inteligente (Modo Simulación - Agrega tu GEMINI_API_KEY para respuestas en tiempo real)'
             });
         }

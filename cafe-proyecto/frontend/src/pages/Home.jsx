@@ -112,6 +112,10 @@ export default function Home({ onNavigate, onLoginClick, searchTerm, onSearchCha
     return () => window.removeEventListener('cafe-retry-data', loadHomeData);
   }, []);
 
+  useEffect(() => {
+    if (searchTerm.trim()) setActiveCategory('Todos');
+  }, [searchTerm]);
+
   const categoryLabels = {
     'Todos': t('cat_all'),
     'Bebidas': t('cat_beverages'),

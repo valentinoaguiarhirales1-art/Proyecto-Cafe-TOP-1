@@ -4,7 +4,7 @@ import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import { djangoCheckoutEnabled, updateProductWithImage } from '../api';
-import { Plus, Coffee, Camera, Loader2 } from 'lucide-react';
+import { Plus, Coffee, Camera, Loader2, Search } from 'lucide-react';
 
 const tierColors = { 'Bebidas': 'text-cafe-caramel', 'Frappes': 'text-sky-300', 'Reposteria': 'text-pink-400', 'Alimentos': 'text-green-400', 'Desayunos': 'text-orange-300', 'Lunch': 'text-emerald-300', 'Café en Grano': 'text-amber-400' };
 
@@ -20,6 +20,7 @@ export default function ProductCard({ product, products = [] }) {
   const [milk, setMilk] = useState(product.customization?.milkOptions?.[0]?.name || '');
   const [extras, setExtras] = useState([]);
   const [suggestedItems, setSuggestedItems] = useState([]);
+  const [suggestionSearch, setSuggestionSearch] = useState('');
   const [notes, setNotes] = useState('');
 
   const hasSizes = product.customization?.sizes?.length > 0;
@@ -62,7 +63,7 @@ export default function ProductCard({ product, products = [] }) {
     return total;
   };
 
-  const getSuggestionPrice = (item) => item.price + (item.customization?.sizes?.[0]?.extraPrice || 0);
+  const getSuggestionPrice = (item) => Number(item.price) + Number(item.customization?.sizes?.[0]?.extraPrice || 0);
 
   const toggleExtra = (name) => {
     setExtras(current => current.includes(name)
@@ -77,43 +78,44 @@ export default function ProductCard({ product, products = [] }) {
   const suggestionCategories = isBeverage
     ? pairCategories
     : ['Desayunos', 'Lunch', 'Reposteria', 'Frappes', 'Bebidas'];
-  const eligibleSuggestions = products.filter(item => item._id !== product._id
-    && item.isAvailable
-    && pairCategories.includes(item.category));
+  const eligibleSuggestions = products.filter(item => item._id !== product._id && item.isAvailable);
   const preferredNames = ['Bebidas', 'Frappes'].includes(product.category)
     ? ['Galletas', 'Brownie', 'Rol de Canela']
     : ['Café Americano', 'Jugo de Naranja'];
-  const suggestions = [];
+  const featuredSuggestions = [];
   preferredNames.forEach(name => {
     const item = eligibleSuggestions.find(suggestion => suggestion.name === name);
-    if (item && !suggestions.some(suggestion => suggestion._id === item._id)) suggestions.push(item);
+    if (item && !featuredSuggestions.some(suggestion => suggestion._id === item._id)) featuredSuggestions.push(item);
   });
   suggestionCategories.forEach(category => {
-    if (suggestions.length >= 4) return;
+    if (featuredSuggestions.length >= 4) return;
     const item = eligibleSuggestions.find(suggestion => suggestion.category === category
-      && !suggestions.some(selected => selected._id === suggestion._id));
-    if (item) suggestions.push(item);
+      && !featuredSuggestions.some(selected => selected._id === suggestion._id));
+    if (item) featuredSuggestions.push(item);
   });
   eligibleSuggestions.forEach(item => {
-    if (suggestions.length < 4 && !suggestions.some(suggestion => suggestion._id === item._id)) suggestions.push(item);
+    if (featuredSuggestions.length < 4 && !featuredSuggestions.some(suggestion => suggestion._id === item._id)) featuredSuggestions.push(item);
   });
 
-  const selectedSuggestionsTotal = suggestions
-    .filter(item => suggestedItems.includes(item._id))
+  const normalizedSuggestionSearch = suggestionSearch.trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase();
+  const selectedSuggestionItems = eligibleSuggestions.filter(item => suggestedItems.includes(item._id));
+  const visibleSuggestions = normalizedSuggestionSearch
+    ? eligibleSuggestions.filter(item => `${item.name} ${item.category} ${item.description || ''}`
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase().includes(normalizedSuggestionSearch))
+    : [...selectedSuggestionItems, ...featuredSuggestions.filter(item => !suggestedItems.includes(item._id))];
+  const selectedSuggestionsTotal = selectedSuggestionItems
     .reduce((total, item) => total + getSuggestionPrice(item), 0);
   const addToCartTotal = calcPrice() + selectedSuggestionsTotal;
 
   const handleAdd = () => {
     addItem({ ...product, imageUrl: currentImage }, { size, milk, extras, notes, finalPrice: calcPrice() });
-    suggestions
-      .filter(item => suggestedItems.includes(item._id))
-      .forEach(item => {
-        const defaultSize = item.customization?.sizes?.[0];
-        addItem(item, {
-          size: defaultSize?.name || '',
-          finalPrice: item.price + (defaultSize?.extraPrice || 0)
-        });
+    selectedSuggestionItems.forEach(item => {
+      const defaultSize = item.customization?.sizes?.[0];
+      addItem(item, {
+        size: defaultSize?.name || '',
+        finalPrice: getSuggestionPrice(item)
       });
+    });
     setShowModal(false);
     setSuggestedItems([]);
   };
@@ -121,10 +123,13 @@ export default function ProductCard({ product, products = [] }) {
   const toggleSuggestion = (id) => {
     setSuggestedItems(current => current.includes(id)
       ? current.filter(itemId => itemId !== id)
-      : current.length < 3 ? [...current, id] : current);
+      : [...current, id]);
   };
 
-  const showCustomize = () => setShowModal(true);
+  const showCustomize = () => {
+    setSuggestionSearch('');
+    setShowModal(true);
+  };
 
   return (
     <>
@@ -224,8 +229,7 @@ export default function ProductCard({ product, products = [] }) {
                       </button>
                     ))}
                   </div>
-                </div>,
-                document.body
+                </div>
               )}
 
               <section className="border-t border-cafe-brown/30 pt-4">
@@ -247,9 +251,20 @@ export default function ProductCard({ product, products = [] }) {
 
               <section className="border-t border-cafe-brown/30 pt-4">
                 <p className="text-cafe-cream font-semibold text-sm mb-1">¿Te gustaría acompañarlo con algo más?</p>
-                <p className="text-cafe-brown text-xs mb-3">Elige hasta 3 productos; se agregan por separado a tu pedido.</p>
+                <p className="text-cafe-brown text-xs mb-3">Busca en el menú, incluso frappes y otros favoritos, y agrega los que quieras; cada uno se suma por separado.</p>
+                <label className="relative mb-3 block">
+                  <Search size={16} aria-hidden="true" className="absolute left-3 top-1/2 -translate-y-1/2 text-cafe-brown" />
+                  <input
+                    type="search"
+                    value={suggestionSearch}
+                    onChange={event => setSuggestionSearch(event.target.value)}
+                    placeholder="Buscar café, frappe, postre..."
+                    aria-label="Buscar productos para agregar al pedido"
+                    className="input-cafe w-full pl-9 text-sm"
+                  />
+                </label>
                 <div className="space-y-2">
-                  {suggestions.map(item => (
+                  {visibleSuggestions.map(item => (
                     <button key={item._id} onClick={() => toggleSuggestion(item._id)}
                       type="button"
                       aria-pressed={suggestedItems.includes(item._id)}
@@ -257,7 +272,8 @@ export default function ProductCard({ product, products = [] }) {
                       <img src={item.imageUrl} alt="" className="w-11 h-11 object-cover rounded-lg" />
                       <span className="flex-1 min-w-0">
                         <span className="block text-cafe-cream text-xs font-medium truncate">{item.name}</span>
-                        <span className="block text-cafe-brown text-xs">
+                        <span className="block text-cafe-brown text-xs truncate">
+                          {item.category} ·{' '}
                           {item.customization?.sizes?.[0] && `${item.customization.sizes[0].name} · `}
                           ${getSuggestionPrice(item)} MXN
                         </span>
@@ -265,6 +281,11 @@ export default function ProductCard({ product, products = [] }) {
                       <span className="text-cafe-caramel text-sm">{suggestedItems.includes(item._id) ? '✓' : '+'}</span>
                     </button>
                   ))}
+                  {visibleSuggestions.length === 0 && (
+                    <p className="rounded-xl bg-cafe-dark/40 p-3 text-sm text-cafe-brown">
+                      No encontré productos con ese nombre. Prueba con otro término.
+                    </p>
+                  )}
                 </div>
               </section>
 

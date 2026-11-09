@@ -4,10 +4,31 @@ const ignoredWords = new Set([
   'recomendar', 'recomienda', 'recomiendas', 'tienen', 'tiene', 'bebida', 'bebidas',
 ]);
 
-export function djangoMenuRecommendation(prompt, products) {
+export function getMentionedMenuItems(text, products) {
+  const normalizedText = normalize(text);
+  return products
+    .map((product) => ({
+      product,
+      index: typeof product.name === 'string' ? normalizedText.indexOf(normalize(product.name)) : -1,
+    }))
+    .filter(({ index }) => index >= 0)
+    .sort((first, second) => first.index - second.index)
+    .slice(0, 3)
+    .map(({ product }) => ({ name: product.name, category: product.category }));
+}
+
+export function djangoMenuRecommendation(prompt, products, history = []) {
   const text = normalize(prompt);
   if (/\b(sin|alerg\w*|intoleran\w*|evitar|evito|prohibid\w*|diabet\w*|descafeinad\w*|embaraz\w*|vegano\w*|vegetarian\w*)\b/.test(text)) {
     return 'No puedo verificar ingredientes, alérgenos ni restricciones alimentarias. Consulta al personal antes de pedir.';
+  }
+  if (/\b(donde|dónde|encuentro|encuentra|ubica|seccion|sección)\b/.test(text)) {
+    const previousReply = [...history].reverse().find((message) => message.role === 'bot')?.text || '';
+    const previousItems = getMentionedMenuItems(previousReply, products);
+    if (previousItems.length) {
+      const item = previousItems[0];
+      return `¡Claro! ${item.name} está en la sección ${item.category} del menú. Toca “Ver ${item.name}” aquí abajo y te llevo directo a encontrarlo.`;
+    }
   }
   const words = text.match(/[a-z0-9]+/g) || [];
   const terms = words.filter((word) => word.length > 3 && !ignoredWords.has(word));
