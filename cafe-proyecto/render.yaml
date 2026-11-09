@@ -3,7 +3,7 @@ services:
     name: cafe-exquisito-api
     runtime: node
     plan: free
-    rootDir: backend
+    rootDir: cafe-proyecto/backend
     buildCommand: npm ci
     startCommand: npm start
     healthCheckPath: /health

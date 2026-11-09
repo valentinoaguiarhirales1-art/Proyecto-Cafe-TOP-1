@@ -17,11 +17,9 @@ Cloudflare Pages publica los archivos estáticos que genera Vite; no ejecuta est
 
 Los planes gratis sirven para una demo o un proyecto personal, pero no garantizan que la aplicación esté siempre lista. Render duerme los servicios gratuitos inactivos y pierde los archivos guardados en el disco local cuando el servicio se detiene, se reinicia o se vuelve a publicar. Revisa los límites vigentes antes de depender de ellos para la defensa.
 
-## 0. Prepara un repositorio separado
+## 0. Repositorio listo
 
-La carpeta del café está dentro de un repositorio superior que contiene otros proyectos. No conectes ese repositorio completo a un servicio público: podrías publicar trabajos ajenos a esta app o archivos que no querías subir.
-
-Crea un repositorio propio para Café Exquisito. En la raíz de ese repositorio deberían quedar `backend/`, `frontend/`, `render.yaml`, `README.md` y los demás archivos de esta carpeta. Puedes conservar `django_backend/` en el repositorio, pero este despliegue no lo usa. No subas archivos `.env`, bases de datos, exportaciones, `node_modules/` ni archivos de otros proyectos. Revisa la vista de archivos del hosting antes del primer despliegue.
+El repositorio de Café Exquisito ya está preparado. Su raíz contiene `README.md`, `LICENSE` y `cafe-proyecto/`; conecta el repositorio `Proyecto-Cafe-TOP-1` en los servicios de despliegue, no el repositorio general `Proyectos`. Este despliegue no usa `django_backend/`. No subas archivos `.env`, bases de datos, exportaciones, `node_modules/` ni archivos de otros proyectos.
 
 ## 1. Crea una base de datos
 
@@ -37,9 +35,9 @@ Render también debe poder conectarse a Atlas. En la lista de acceso de red de A
 
 ## 2. Publica el backend en Render
 
-La carpeta incluye un `render.yaml` para preparar el Web Service con `backend/`, `npm ci`, `npm start` y la comprobación de salud `/health`. En Render puedes crear el servicio desde ese Blueprint, usando el repositorio independiente de Café Exquisito. Al importar el Blueprint, proporciona el `MONGO_URI` de Atlas cuando Render lo solicite; sin él, la API no puede pasar su comprobación de salud. El Blueprint genera `JWT_SECRET` y `EMPLOYER_ACCESS_KEY`. Si prefieres crear el servicio manualmente:
+La carpeta `cafe-proyecto/` incluye `render.yaml` para preparar el Web Service. Si Render permite indicar la ruta del archivo Blueprint, selecciona `cafe-proyecto/render.yaml`; proporciona el `MONGO_URI` de Atlas cuando Render lo solicite. El Blueprint genera `JWT_SECRET` y `EMPLOYER_ACCESS_KEY`. También puedes crear el servicio manualmente:
 
-- **Root Directory:** `backend` si `backend/` está en la raíz del repositorio.
+- **Root Directory:** `cafe-proyecto/backend`.
 - **Build Command:** `npm ci`
 - **Start Command:** `npm start`
 - **Instance Type:** Free, si aparece disponible en tu cuenta.
@@ -84,9 +82,9 @@ El primer comando agrega/actualiza productos; el segundo agrega/actualiza promoc
 
 ## 3. Publica React en Cloudflare Pages
 
-En Cloudflare Pages crea un proyecto conectado al repositorio separado:
+En Cloudflare Pages crea un proyecto conectado a `Proyecto-Cafe-TOP-1`:
 
-- **Root directory:** `frontend`
+- **Root directory:** `cafe-proyecto/frontend`
 - **Build command:** `npm run build`
 - **Build output directory:** `dist`
 - **Variable de build `VITE_API_URL`:** URL pública del backend terminada en `/api`, sin barra final. Ejemplo: `https://tu-api.onrender.com/api`
