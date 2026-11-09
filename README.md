@@ -1,24 +1,63 @@
-# Café Exquisito
+# ☕ Café Exquisito
 
-Aplicación web de cafetería con catálogo, pedidos, reservas, promociones y un panel de administración.
+### Una experiencia digital para disfrutar cada momento
 
-El proyecto completo está en [`cafe-proyecto/`](./cafe-proyecto/). Ahí se encuentran el frontend, la API, sus instrucciones y la guía de despliegue.
+Aplicación web para una cafetería: explora el menú, consulta promociones, haz pedidos y reservas, y administra el contenido desde un solo lugar.
 
-## Tecnologías
+> **Un proyecto pensado para que pedir tu café favorito sea fácil, agradable y rápido.**
 
-- Frontend: React y Vite.
-- API preparada para esta publicación: Node.js y Express.
-- Datos: MongoDB Atlas.
-- Despliegue planeado: Cloudflare Pages para el frontend y Render para la API.
+---
 
-El backend Django se conserva como una integración experimental, pero no forma parte del despliegue básico acordado. Por ello, esta publicación no acredita por sí sola el requisito de Django como backend principal.
+## ✨ ¿Qué puedes encontrar?
 
-## Empezar
+- 🥐 **Catálogo** de productos y promociones.
+- 🛍️ **Pedidos** y seguimiento de la experiencia de compra.
+- 📅 **Reservas** y funciones para eventos.
+- 🧑‍🍳 **Administración** del contenido del café.
+- 📱 **Interfaz adaptable** y funciones de consulta sin conexión.
 
-Consulta [`cafe-proyecto/README.md`](./cafe-proyecto/README.md) para conocer el estado del proyecto y las instrucciones locales. Para preparar la publicación, sigue [`cafe-proyecto/DESPLIEGUE_GRATIS.md`](./cafe-proyecto/DESPLIEGUE_GRATIS.md).
+## 🧰 Tecnologías
 
-No subas archivos `.env`, contraseñas, bases de datos locales ni exportaciones de datos. Usa los archivos `.env.example` como referencia y configura secretos únicamente en tu equipo o en los paneles privados de los servicios.
+| Parte | Tecnología |
+|---|---|
+| Interfaz | React + Vite |
+| API de esta publicación | Node.js + Express |
+| Base de datos | MongoDB Atlas |
+| Despliegue planeado | Cloudflare Pages + Render |
 
-## Licencia
+### 🗺️ Así se conectan las piezas
 
-El código y la documentación originales se distribuyen bajo la licencia MIT incluida en [`LICENSE`](./LICENSE). La licencia no cubre fotografías, ilustraciones, marcas, tipografías ni otros materiales de terceros, que conservan sus propios derechos y condiciones.
+```text
+Tu navegador
+    ├── La página: Cloudflare Pages
+    └── La API:    Render
+                      └── Los datos: MongoDB Atlas
+```
+
+## 🚀 Para empezar
+
+El proyecto está dentro de [`cafe-proyecto/`](./cafe-proyecto/). Ahí encontrarás el frontend, la API, documentación y los archivos necesarios para trabajar en la aplicación.
+
+1. 📖 Lee [`cafe-proyecto/README.md`](./cafe-proyecto/README.md) para conocer el proyecto y cómo ejecutarlo.
+2. 🌐 Sigue [`cafe-proyecto/DESPLIEGUE_GRATIS.md`](./cafe-proyecto/DESPLIEGUE_GRATIS.md) para preparar el despliegue.
+3. 🔐 Usa los archivos `.env.example` como guía y configura tus claves de forma privada.
+
+## 📌 Estado del despliegue
+
+El repositorio está organizado para desplegar **React en Cloudflare Pages**, **Express en Render** y usar **MongoDB Atlas**. **El sitio todavía no está publicado en esos servicios.**
+
+El backend Django se conserva como una integración experimental y no forma parte de este despliegue básico. Por eso, esta publicación **no acredita por sí sola** el requisito de Django como backend principal.
+
+## 🔒 Privacidad y archivos sensibles
+
+No subas contraseñas, archivos `.env`, bases de datos locales ni exportaciones. Mantén las claves privadas en tu equipo o en los paneles de configuración de cada servicio.
+
+## 📜 Derechos de uso
+
+Este proyecto **no se distribuye bajo una licencia de código abierto**. Consulta [`LICENSE`](./LICENSE): el uso, la copia, la modificación o la redistribución requieren autorización previa y por escrito del titular de los derechos.
+
+Las fotografías, ilustraciones, marcas, tipografías y otros materiales de terceros pueden tener condiciones propias y no quedan incluidos en esta licencia.
+
+---
+
+<p align="center"><strong>Hecho con cariño y mucho café ☕</strong></p>
