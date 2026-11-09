@@ -41,6 +41,7 @@ test('el barista recuerda su recomendación y enlaza el producto mencionado', as
     const products = [
         { _id: 'coffee', name: 'Café Americano', price: 46, category: 'Bebidas', description: 'Café.' },
         { _id: 'brownie', name: 'Brownie', price: 40, category: 'Reposteria', description: 'Brownie.' },
+        { _id: 'tea', name: 'Té', price: 45, category: 'Bebidas', description: 'Té.' },
     ];
     t.mock.method(Product, 'find', () => ({
         select: () => ({ sort: async () => products }),

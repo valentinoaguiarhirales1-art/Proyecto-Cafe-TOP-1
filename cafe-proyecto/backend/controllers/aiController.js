@@ -19,11 +19,7 @@ const createFallbackRecommendation = (prompt, products, history = []) => {
     const asksWhere = /\b(donde|dónde|encuentro|encuentra|ubica|seccion|sección)\b/i.test(prompt);
     if (asksWhere) {
         const previousReply = [...history].reverse().find(message => message.role === 'bot')?.text || '';
-        const normalizedReply = normalizeMenuText(previousReply);
-        const previousItem = products
-            .map(product => ({ product, index: normalizedReply.indexOf(normalizeMenuText(product.name)) }))
-            .filter(({ index }) => index >= 0)
-            .sort((first, second) => first.index - second.index)[0]?.product;
+        const previousItem = getMentionedItems(previousReply, products)[0];
         if (previousItem) {
             const category = previousItem.category === 'Reposteria' ? 'Repostería' : previousItem.category;
             return `¡Claro! ${previousItem.name} está en la sección ${category} del menú. Busca “${previousItem.name}” aquí abajo y te llevo directo a encontrarlo.`;
@@ -80,14 +76,18 @@ const createFallbackRecommendation = (prompt, products, history = []) => {
 const getMentionedItems = (text, products) => {
     const normalizedText = normalizeMenuText(text);
     return products
-    .map(product => ({
-        product,
-        index: typeof product.name === 'string' ? normalizedText.indexOf(normalizeMenuText(product.name)) : -1,
-    }))
-    .filter(({ index }) => index >= 0)
-    .sort((first, second) => first.index - second.index)
-    .slice(0, 3)
-    .map(({ product }) => ({ name: product.name, category: product.category }));
+        .map(product => {
+            if (typeof product.name !== 'string') return { product, index: -1 };
+            const name = normalizeMenuText(product.name);
+            if (name.length < 3) return { product, index: -1 };
+            const escapedName = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const match = normalizedText.match(new RegExp(`(^|[^a-z0-9])${escapedName}(?=$|[^a-z0-9])`));
+            return { product, index: match ? match.index + match[1].length : -1 };
+        })
+        .filter(({ index }) => index >= 0)
+        .sort((first, second) => first.index - second.index)
+        .slice(0, 3)
+        .map(({ product }) => ({ name: product.name, category: product.category }));
 };
 
 // @desc    Barista Virtual IA: Recomienda bebidas y maridaje según el gusto del cliente

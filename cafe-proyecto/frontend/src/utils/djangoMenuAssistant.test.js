@@ -29,6 +29,13 @@ test('resuelve preguntas de seguimiento y crea accesos a productos del menú', (
   const answer = djangoMenuRecommendation('¿Dónde encuentro eso?', products, history);
   assert.match(answer, /Frappé de chocolate está en la sección Frappes/);
   assert.deepEqual(getMentionedMenuItems(answer, products), [{ name: 'Frappé de chocolate', category: 'Frappes' }]);
+  assert.deepEqual(
+    getMentionedMenuItems('Café Americano te lleva al menú.', [
+      { name: 'Café Americano', category: 'Bebidas' },
+      { name: 'Té', category: 'Bebidas' },
+    ]),
+    [{ name: 'Café Americano', category: 'Bebidas' }],
+  );
   assert.match(
     djangoMenuRecommendation('¿Dónde encuentro eso? Tengo alergia a la leche', products, history),
     /consulta al personal/i,

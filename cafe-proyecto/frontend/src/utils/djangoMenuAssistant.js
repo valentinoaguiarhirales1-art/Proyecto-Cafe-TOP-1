@@ -7,10 +7,14 @@ const ignoredWords = new Set([
 export function getMentionedMenuItems(text, products) {
   const normalizedText = normalize(text);
   return products
-    .map((product) => ({
-      product,
-      index: typeof product.name === 'string' ? normalizedText.indexOf(normalize(product.name)) : -1,
-    }))
+    .map((product) => {
+      if (typeof product.name !== 'string') return { product, index: -1 };
+      const name = normalize(product.name);
+      if (name.length < 3) return { product, index: -1 };
+      const escapedName = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const match = normalizedText.match(new RegExp(`(^|[^a-z0-9])${escapedName}(?=$|[^a-z0-9])`));
+      return { product, index: match ? match.index + match[1].length : -1 };
+    })
     .filter(({ index }) => index >= 0)
     .sort((first, second) => first.index - second.index)
     .slice(0, 3)
