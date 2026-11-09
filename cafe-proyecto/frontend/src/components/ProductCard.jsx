@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
@@ -20,7 +21,6 @@ export default function ProductCard({ product, products = [] }) {
   const [extras, setExtras] = useState([]);
   const [suggestedItems, setSuggestedItems] = useState([]);
   const [notes, setNotes] = useState('');
-  const [added, setAdded] = useState(false);
 
   const hasSizes = product.customization?.sizes?.length > 0;
   const hasMilk = product.customization?.milkOptions?.length > 0;
@@ -62,6 +62,8 @@ export default function ProductCard({ product, products = [] }) {
     return total;
   };
 
+  const getSuggestionPrice = (item) => item.price + (item.customization?.sizes?.[0]?.extraPrice || 0);
+
   const toggleExtra = (name) => {
     setExtras(current => current.includes(name)
       ? current.filter(extra => extra !== name)
@@ -96,6 +98,11 @@ export default function ProductCard({ product, products = [] }) {
     if (suggestions.length < 4 && !suggestions.some(suggestion => suggestion._id === item._id)) suggestions.push(item);
   });
 
+  const selectedSuggestionsTotal = suggestions
+    .filter(item => suggestedItems.includes(item._id))
+    .reduce((total, item) => total + getSuggestionPrice(item), 0);
+  const addToCartTotal = calcPrice() + selectedSuggestionsTotal;
+
   const handleAdd = () => {
     addItem({ ...product, imageUrl: currentImage }, { size, milk, extras, notes, finalPrice: calcPrice() });
     suggestions
@@ -107,12 +114,8 @@ export default function ProductCard({ product, products = [] }) {
           finalPrice: item.price + (defaultSize?.extraPrice || 0)
         });
       });
-    setAdded(true);
-    setTimeout(() => {
-      setAdded(false);
-      setShowModal(false);
-      setSuggestedItems([]);
-    }, 900);
+    setShowModal(false);
+    setSuggestedItems([]);
   };
 
   const toggleSuggestion = (id) => {
@@ -183,15 +186,15 @@ export default function ProductCard({ product, products = [] }) {
         </div>
       </div>
 
-      {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" onClick={() => setShowModal(false)}>
-          <div className="glass-dark max-w-md w-full max-h-[90vh] overflow-y-auto animate-slide-up" onClick={event => event.stopPropagation()}>
-            <div className="image-art-frame relative h-40 overflow-hidden rounded-t-2xl">
+      {showModal && createPortal(
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/70 p-3 backdrop-blur-sm sm:p-4" onClick={() => setShowModal(false)}>
+          <div className="glass-dark flex max-h-[90dvh] w-full max-w-md flex-col overflow-hidden rounded-2xl animate-slide-up" onClick={event => event.stopPropagation()}>
+            <div className="image-art-frame relative h-36 shrink-0 overflow-hidden sm:h-40">
               <img src={currentImage} alt={product.name} loading="lazy" decoding="async" className="image-art-image w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-cafe-dark to-transparent" />
               <h2 className="absolute bottom-3 left-4 font-serif text-cafe-cream text-xl">{product.name}</h2>
             </div>
-            <div className="p-5 space-y-4">
+            <div className="min-h-0 flex-1 space-y-4 overflow-y-auto overscroll-contain p-4 sm:p-5">
               <p className="text-cafe-brown text-sm">{product.description}</p>
 
               {hasSizes && (
@@ -200,6 +203,7 @@ export default function ProductCard({ product, products = [] }) {
                   <div className="flex flex-wrap gap-2">
                     {product.customization.sizes.map(option => (
                       <button key={option.name} onClick={() => setSize(option.name)}
+                        type="button"
                         className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${size === option.name ? 'bg-cafe-caramel text-cafe-dark' : 'border border-cafe-brown/50 text-cafe-cream hover:border-cafe-caramel'}`}>
                         {option.name} · ${product.price + option.extraPrice}
                       </button>
@@ -214,12 +218,14 @@ export default function ProductCard({ product, products = [] }) {
                   <div className="flex flex-wrap gap-2">
                     {product.customization.milkOptions.map(option => (
                       <button key={option.name} onClick={() => setMilk(option.name)}
+                        type="button"
                         className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${milk === option.name ? 'bg-cafe-caramel text-cafe-dark' : 'border border-cafe-brown/50 text-cafe-cream hover:border-cafe-caramel'}`}>
                         {option.name} {option.extraPrice > 0 && `+$${option.extraPrice}`}
                       </button>
                     ))}
                   </div>
-                </div>
+                </div>,
+                document.body
               )}
 
               <section className="border-t border-cafe-brown/30 pt-4">
@@ -228,6 +234,7 @@ export default function ProductCard({ product, products = [] }) {
                   <div className="flex flex-wrap gap-2">
                     {product.customization.extras.map(extra => (
                       <button key={extra.name} onClick={() => toggleExtra(extra.name)}
+                        type="button"
                         className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${extras.includes(extra.name) ? 'bg-cafe-gold text-cafe-dark' : 'border border-cafe-brown/50 text-cafe-cream hover:border-cafe-gold'}`}>
                         {extra.name} {extra.extraPrice > 0 ? `+$${extra.extraPrice}` : '(sin costo)'}
                       </button>
@@ -244,13 +251,15 @@ export default function ProductCard({ product, products = [] }) {
                 <div className="space-y-2">
                   {suggestions.map(item => (
                     <button key={item._id} onClick={() => toggleSuggestion(item._id)}
+                      type="button"
+                      aria-pressed={suggestedItems.includes(item._id)}
                       className={`w-full flex items-center gap-3 rounded-xl p-2 text-left transition-colors ${suggestedItems.includes(item._id) ? 'bg-cafe-caramel/20 ring-1 ring-cafe-caramel' : 'bg-cafe-dark/40 hover:bg-cafe-dark/70'}`}>
                       <img src={item.imageUrl} alt="" className="w-11 h-11 object-cover rounded-lg" />
                       <span className="flex-1 min-w-0">
                         <span className="block text-cafe-cream text-xs font-medium truncate">{item.name}</span>
                         <span className="block text-cafe-brown text-xs">
                           {item.customization?.sizes?.[0] && `${item.customization.sizes[0].name} · `}
-                          ${item.price} MXN
+                          ${getSuggestionPrice(item)} MXN
                         </span>
                       </span>
                       <span className="text-cafe-caramel text-sm">{suggestedItems.includes(item._id) ? '✓' : '+'}</span>
@@ -264,18 +273,26 @@ export default function ProductCard({ product, products = [] }) {
                 <input className="input-cafe text-sm" placeholder="Ej: poco caliente, sin azúcar..." value={notes} onChange={event => setNotes(event.target.value)} />
               </div>
 
-              <div className="flex items-center justify-between pt-2 border-t border-cafe-brown/30">
+            </div>
+            <div className="shrink-0 space-y-3 border-t border-cafe-brown/30 bg-cafe-espresso/95 p-4 pb-[max(1rem,env(safe-area-inset-bottom))] backdrop-blur sm:p-5">
+              <div className="flex items-end justify-between gap-3">
                 <div>
-                  <p className="text-cafe-brown text-xs">Total de este producto</p>
-                  <p className="text-cafe-caramel font-bold text-2xl">${calcPrice()} <span className="text-xs text-cafe-brown font-normal">MXN</span></p>
+                  <p className="text-cafe-cream text-sm font-semibold">Total a agregar</p>
+                  <p className="text-cafe-brown text-xs">
+                    Producto ${calcPrice()} {selectedSuggestionsTotal > 0 && `· acompañamientos $${selectedSuggestionsTotal}`}
+                  </p>
                 </div>
-                <button onClick={handleAdd} disabled={added} className={`btn-primary disabled:opacity-70 ${added ? 'bg-green-600' : ''}`}>
-                  {added ? '✓ ¡Agregado!' : 'Agregar al carrito'}
-                </button>
+                <p className="shrink-0 text-cafe-caramel text-2xl font-bold" aria-live="polite">
+                  ${addToCartTotal} <span className="text-xs font-normal text-cafe-brown">MXN</span>
+                </p>
               </div>
+              <button type="button" onClick={handleAdd} className="btn-primary w-full">
+                Agregar al carrito · ${addToCartTotal} MXN
+              </button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );

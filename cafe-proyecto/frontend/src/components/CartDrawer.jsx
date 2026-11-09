@@ -77,7 +77,7 @@ export default function CartDrawer({ onLoginClick, onNavigate }) {
   return (
     <div className="fixed inset-0 z-50 flex justify-end">
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={closeCart} />
-      <div className="relative w-full max-w-md bg-cafe-espresso shadow-2xl flex flex-col animate-slide-in-right">
+      <div className="relative flex h-[100dvh] min-h-0 w-full max-w-md flex-col bg-cafe-espresso shadow-2xl animate-slide-in-right">
         {/* Header */}
         <div className="flex items-center justify-between p-5 border-b border-cafe-brown/30">
           <div className="flex items-center gap-2">
@@ -116,7 +116,7 @@ export default function CartDrawer({ onLoginClick, onNavigate }) {
         ) : (
           <>
             {/* Items */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-3">
+            <div className="min-h-0 flex-1 space-y-3 overflow-y-auto overscroll-contain p-4">
               {items.map(item => (
                 <div key={item.cartId} className="flex gap-3 bg-cafe-dark/40 rounded-xl p-3">
                   <img src={item.imageUrl} alt={item.name} className="w-16 h-16 object-cover rounded-lg flex-shrink-0" />
