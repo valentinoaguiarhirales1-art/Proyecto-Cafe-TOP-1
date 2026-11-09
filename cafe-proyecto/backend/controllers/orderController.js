@@ -2,7 +2,9 @@ const Order = require('../models/Order');
 const User = require('../models/User');
 const Product = require('../models/Product');
 const Stripe = require('stripe');
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '');
+const stripe = process.env.STRIPE_SECRET_KEY
+    ? new Stripe(process.env.STRIPE_SECRET_KEY)
+    : null;
 
 // Función auxiliar para disparar Webhook hacia N8N (Notificaciones automáticas a WhatsApp/Telegram)
 const triggerN8nWebhook = async (payload) => {
@@ -126,7 +128,11 @@ exports.addOrderItems = async (req, res) => {
         let paymentResult = {};
 
         // Procesar pago con Stripe si viene el token de tarjeta
-        if (stripeTokenId && process.env.STRIPE_SECRET_KEY) {
+        if (stripeTokenId && !stripe) {
+            return res.status(503).json({ error: 'Los pagos con tarjeta no están configurados' });
+        }
+
+        if (stripeTokenId) {
             const charge = await stripe.charges.create({
                 amount: finalPrice * 100, // Stripe maneja centavos
                 currency: 'mxn',
