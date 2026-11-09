@@ -14,6 +14,8 @@ connectDB();
 
 const app = express();
 
+app.set('trust proxy', 1);
+
 // --- FIREWALL Y SEGURIDAD HTTP ---
 app.use(helmetSecurity); // Protege cabeceras HTTP contra vulnerabilidades comunes
 app.use('/api', apiLimiter); // Protección anti-DDoS / Rate Limiter
