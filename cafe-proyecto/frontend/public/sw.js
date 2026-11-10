@@ -1,6 +1,6 @@
 // Service Worker — Café Exquisito PWA
 // Versión de caché: incrementar al actualizar assets
-const CACHE_NAME = 'cafe-exquisito-v42-sesion-pedido';
+const CACHE_NAME = 'cafe-exquisito-v43-musica-ambiente';
 const PUBLIC_API_PATHS = new Set([
   '/api/products',
   '/api/events',

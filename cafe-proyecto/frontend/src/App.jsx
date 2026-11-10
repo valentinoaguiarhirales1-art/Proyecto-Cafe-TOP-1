@@ -8,6 +8,7 @@ import AuthModal from './components/AuthModal';
 import HolidayDecorations from './components/HolidayDecorations';
 import OfflineIndicator from './components/OfflineIndicator';
 import RuntimeErrorNotice from './components/RuntimeErrorNotice';
+import MusicPlayer from './components/MusicPlayer';
 import Home from './pages/Home';
 import OrdersPage from './pages/OrdersPage';
 import ProfilePage from './pages/ProfilePage';
@@ -121,6 +122,7 @@ export default function App() {
       <main className="relative z-10">{renderPage()}</main>
       <CartDrawer onLoginClick={openAuth} onNavigate={handleNavigate} />
       <BaristaChat onNavigate={handleNavigate} onSearch={handleSearch} />
+      <MusicPlayer />
       {showAuthModal && <AuthModal onClose={() => setShowAuthModal(false)} />}
     </div>
   );

@@ -6,9 +6,7 @@ Aplicación web para consultar una carta de cafetería, preparar pedidos y gesti
 
 Para desplegar esta versión se eligió **React en Cloudflare Pages + API Express en Render + MongoDB Atlas**. Es una excepción acordada para priorizar una publicación sencilla y estable mientras este entorno presenta errores con WSL/Docker. Django sigue en el proyecto como integración de prueba y no es el backend de esta publicación. Por eso, esta entrega **no demuestra el requisito de Django como backend principal**; hay que presentarla ante Conquer Blocks como una adaptación/excepción, no afirmar que Django cumple ese requisito. Si el instructor lo exige sin excepción, habría que volver a desplegar la API Django en un host con PostgreSQL y verificarla allí, lo cual no depende de Docker local.
 
-Todavía no hay una URL pública de producción ni un vídeo. La guía [DESPLIEGUE_GRATIS.md](./DESPLIEGUE_GRATIS.md) indica cómo publicar la API y el frontend; requiere las cuentas de los servicios, sus variables privadas y pruebas en las direcciones publicadas.
-
-Esta carpeta está sin seguimiento propio en la copia revisada y no tiene un historial progresivo de commits. No se inventó uno. Antes de publicar, elige el repositorio correcto y revisa `git status` para no subir otros proyectos que están en la carpeta superior.
+La interfaz publicada está en [Cloudflare Pages](https://proyecto-cafe-top-1.pages.dev/) y la API en [Render](https://proyecto-cafe-top-1.onrender.com/). La guía [DESPLIEGUE_GRATIS.md](./DESPLIEGUE_GRATIS.md) explica la configuración; revisa las variables privadas y vuelve a probar los flujos después de cada publicación. El vídeo de defensa se agrega a la entrega cuando esté grabado.
 
 ## Qué incluye
 
@@ -18,6 +16,7 @@ Esta carpeta está sin seguimiento propio en la copia revisada y no tiene un his
 - Solicitudes de reserva y consulta del estado.
 - Panel de administración para gestionar contenido y pedidos.
 - Asistente de menú conectado a un proveedor de IA si se configura su clave.
+- Música ambiental original, con reproducción voluntaria y control de volumen.
 - Interfaz React con un modo PWA y caché local de productos.
 
 El modo sin conexión permite abrir recursos que ya se hayan cargado y, en el modo Express, consultar productos cacheados. El catálogo Django no se guarda para uso sin conexión. **No se debe contar con que cree pedidos offline ni que los sincronice después**; esa sincronización no está implementada de forma completa.
@@ -29,6 +28,12 @@ En el chat del asistente, Enter envía el mensaje y Shift+Enter agrega un salto 
 Como prueba opcional, `VITE_DJANGO_CHAT=true` busca palabras en el catálogo disponible de Django sin usar Express ni un proveedor de IA. Es una búsqueda sencilla, no un chat de inteligencia artificial: muestra coincidencias o pide otra búsqueda y no verifica ingredientes ni restricciones. Para alergias u otras necesidades alimentarias consulta al personal. Con la opción desactivada se conserva el asistente de Express. Esta búsqueda tampoco reemplaza la configuración de producción del backend Django.
 
 Algunos productos y promociones muestran «Fotografía pendiente» porque la foto anterior no correspondía a lo anunciado. Las fotografías ilustrativas pueden diferir de la presentación real y sus créditos están al pie de la página. Se pueden subir fotos reales desde el panel de administración. Para no alterar fotos personalizadas, las sustituciones de imágenes antiguas solo se aplican cuando coinciden tanto el nombre o título como la ruta anterior; no se cambian los registros de la base de datos.
+
+## Memoria del proyecto
+
+- [Memoria de Café Exquisito en PDF](./MEMORIA_CAFE_EXQUISITO.pdf)
+- [Versión editable en Word](./MEMORIA_CAFE_EXQUISITO_EDITABLE.docx)
+- [Fuente editable en Markdown](./MEMORIA_CAFE_EXQUISITO_EDITABLE.md)
 
 ## Sobre instalarla como app
 
